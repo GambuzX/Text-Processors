@@ -18,5 +18,13 @@
     <ClCompile Include="procdic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Extractor.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Extractor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
