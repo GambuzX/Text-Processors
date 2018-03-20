@@ -2,6 +2,7 @@
 
 #pragma once
 #include <iostream>
+#include <fstream>
 #include "Extractor.h"
 
 using namespace std;
@@ -47,8 +48,58 @@ int Extractor::GetSimpleWords() const {	return NumberOfSimpleWords;}
 //Getter for the number of non duplicate simple words
 int Extractor::GetNonDuplicateSimpleWords() const {	return NumberOfNonDuplicateSimpleWords;}
 
+
+//Given a line, searches for valid headlines and adds them to the wordList
+void Extractor::VerifyAndAddValidWords(vector<string> &wordList, string line)
+{
+	bool hasColon = false; //bool to keep track if the line has a colon or not
+
+	for (int i = 0; i < line.length(); i ++) //for each letter in the line
+	{
+		if (line.at(i) == ';') hasColon = true;
+		if ((int)line.at(i) > 255 || (int) line.at(i) < 0) return; //if not a valid ASCII char, return
+
+		if (!isupper(line.at(i)) && line.at(i) != ';') //if it is not an uppercase letter or a ';'
+		{
+			if (line.at(i) == ' ' && line.at(i-1) == ';') //if it is a space but has a ';' before, maintain has valid
+				continue;
+			else
+				return;
+		}
+	}
+
+	//TODO Add words to vector
+
+	cout << line << endl;
+
+	return;
+}
+
 //Method to extract the headlines starting with the specified letter from the given dictionary, adding them to the wordList vector
 void Extractor::ExtractWordsWithLetter(std::vector<std::string>& wordList, string dictionaryFile, char letter)
 {
+	//TODO Improve efficiency
+
+	int wordCounter = 0; //TODO Implement word counter to add dots
+	string line;
+
+	ifstream dict(dictionaryFile); //opens the dictionary file for reading
+
+
+	while (!dict.eof() )
+	{
+		getline(dict, line); //reads a line
+
+		if (line.length() > 0 && line.at(0) == letter)
+		{
+			VerifyAndAddValidWords(wordList, line);
+		}
+	}
+
+	dict.close();
+
+	cout << endl;
 	return;
 }
+
+

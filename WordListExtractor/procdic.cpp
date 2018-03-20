@@ -2,8 +2,8 @@
 
 #pragma once
 #include <iostream>
+#include <fstream>
 #include "Extractor.h"
-#include "procdic.h"
 
 using namespace std;
 
