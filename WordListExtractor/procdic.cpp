@@ -25,6 +25,7 @@ int main()
 
 	vector<string> wordList = extractor.ProcessDictionary(dictionary);
 
+	cout << endl;
 	cout << "Number of simple words = " << extractor.GetSimpleWords() << endl << endl;
 
 	cout << "Sorting words ...\n\n";

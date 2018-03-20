@@ -28,7 +28,7 @@ std::vector<std::string> Extractor::ProcessDictionary(string dictionary)
 {
 	vector<string> WordList;
 
-	char CurrentChar = 'A';
+	char CurrentChar;
 	int wordCounter = 0; //TODO Implement word counter to add dots
 	string line;
 
@@ -40,7 +40,7 @@ std::vector<std::string> Extractor::ProcessDictionary(string dictionary)
 
 		if (line.length() > 0 && (int) line.at(0) >= 0  && (int) line.at(0) <= 255 && isupper(line.at(0)))
 		{
-			VerifyAndAddValidWords(WordList, line, CurrentChar);
+			VerifyAndAddValidWords(WordList, line, CurrentChar, wordCounter);
 		}
 	}
 
@@ -75,7 +75,7 @@ int Extractor::GetNonDuplicateSimpleWords() const {	return NumberOfNonDuplicateS
 
 
 //Given a line, searches for valid headlines and adds them to the wordList
-void Extractor::VerifyAndAddValidWords(vector<string> &wordList, string line, char & currentChar)
+void Extractor::VerifyAndAddValidWords(vector<string> &wordList, string line, char & currentChar, int &validWords)
 {
 	bool hasColon = false; //bool to keep track if the line has a colon or not
 
@@ -95,7 +95,18 @@ void Extractor::VerifyAndAddValidWords(vector<string> &wordList, string line, ch
 
 	//TODO Add words to vector
 
-	cout << line << endl;
+	//If it gets to this point, its because the line HAS valid headlines
+	if (line.at(0) != currentChar)
+	{
+		if (!(currentChar == 'C' && line.at(0) == 'R')) //There is a line starting with 'R' between the 'C' Words. This prevents unwanted behaviour
+		{
+			currentChar = line.at(0);
+			cout << currentChar << endl;
+			cout << ".........\n";
+		}
+	}
+
+	//cout << line << endl;
 
 	return;
 }

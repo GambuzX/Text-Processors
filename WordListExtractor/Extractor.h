@@ -18,7 +18,7 @@ public:
 private:
 
 	//void ExtractWordsWithLetter(std::vector<std::string> &wordList, std::string dictionaryFile, char letter);
-	void VerifyAndAddValidWords(std::vector<std::string> &wordList, std::string line, char &currentChar);
+	void VerifyAndAddValidWords(std::vector<std::string> &wordList, std::string line, char &currentChar, int &validWords);
 
 	int NumberOfSimpleWords;
 	int NumberOfNonDuplicateSimpleWords;
