@@ -126,6 +126,7 @@ void Extractor::VerifyAndAddValidWords(string line)
 				finishedLine = true; //if no more colons, finish the loop when it reaches the end
 				wordList.push_back(line); //adds the remaining word
 				headlinesDetected++;
+				cout << line << endl;
 			}
 			else
 			{
@@ -139,7 +140,7 @@ void Extractor::VerifyAndAddValidWords(string line)
 
 	}
 
-	//TODO Add words to vector in lines with colon
+	//TODO Deal with lines like ABRAUM; ABRAUM SALTS
 
 	//cout << line << endl;
 
