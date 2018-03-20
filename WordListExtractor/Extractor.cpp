@@ -24,12 +24,13 @@ using namespace std;
 	return WordList;
 }*/
 
-std::vector<std::string> Extractor::ProcessDictionary(string dictionary)
+//Extracts all the headlines from the dictionary, adding them to the class wordList
+void Extractor::ProcessDictionary(string dictionary)
 {
 	vector<string> WordList;
 
-	char CurrentChar;
-	int wordCounter = 0; //TODO Implement word counter to add dots
+	 //TODO Implement word counter to add dots
+
 	string line;
 
 	ifstream dict(dictionary); //opens the dictionary file for reading
@@ -40,29 +41,29 @@ std::vector<std::string> Extractor::ProcessDictionary(string dictionary)
 
 		if (line.length() > 0 && (int) line.at(0) >= 0  && (int) line.at(0) <= 255 && isupper(line.at(0)))
 		{
-			VerifyAndAddValidWords(WordList, line, CurrentChar, wordCounter);
+			VerifyAndAddValidWords(line);
 		}
 	}
 
 	dict.close();
 
-	return WordList;
+	return;
 }
 
 //Sorts the wordList vector
-void Extractor::SortWordList(vector<string>& WordList)
+void Extractor::SortWordList()
 {
 	return;
 }
 
 //Removes duplicate words from the vector (assuming it is sorted)
-void Extractor::RemoveDuplicateWords(vector<string>& WordList)
+void Extractor::RemoveDuplicateWords()
 {
 	return;
 }
 
 //Saves the word list vector to a file
-void Extractor::SaveWordList(vector<string>& WordList, string wordListFile)
+void Extractor::SaveWordList(string wordListFile)
 {
 	return;
 }
@@ -75,7 +76,7 @@ int Extractor::GetNonDuplicateSimpleWords() const {	return NumberOfNonDuplicateS
 
 
 //Given a line, searches for valid headlines and adds them to the wordList
-void Extractor::VerifyAndAddValidWords(vector<string> &wordList, string line, char & currentChar, int &validWords)
+void Extractor::VerifyAndAddValidWords(string line)
 {
 	bool hasColon = false; //bool to keep track if the line has a colon or not
 
@@ -93,18 +94,29 @@ void Extractor::VerifyAndAddValidWords(vector<string> &wordList, string line, ch
 		}
 	}
 
-	//TODO Add words to vector
-
 	//If it gets to this point, its because the line HAS valid headlines
-	if (line.at(0) != currentChar)
+
+	if (line.at(0) != currentChar) //When changing starting letter
 	{
 		if (!(currentChar == 'C' && line.at(0) == 'R')) //There is a line starting with 'R' between the 'C' Words. This prevents unwanted behaviour
 		{
 			currentChar = line.at(0);
-			cout << currentChar << endl;
-			cout << ".........\n";
+			cout << endl << currentChar << endl;
 		}
 	}
+	else //When still with the same starting letter
+	{
+		if (headlinesDetected % 100 == 0)
+			cout << '.';
+	}
+
+	if (!hasColon) //if line with only a word
+	{
+		wordList.push_back(line);
+		headlinesDetected++;
+	}
+
+	//TODO Add words to vector in lines with colon
 
 	//cout << line << endl;
 

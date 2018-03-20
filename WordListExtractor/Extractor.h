@@ -8,17 +8,22 @@
 class Extractor
 {
 public:
-	std::vector<std::string> ProcessDictionary(std::string dictionary);
-	void SortWordList(std::vector<std::string> &WordList);
-	void RemoveDuplicateWords(std::vector<std::string> &WordList);
-	void SaveWordList(std::vector<std::string> &WordList, std::string wordListFile);
+	void ProcessDictionary(std::string dictionary);
+	void SortWordList();
+	void RemoveDuplicateWords();
+	void SaveWordList(std::string wordListFile);
 	int GetSimpleWords() const;
 	int GetNonDuplicateSimpleWords() const;
 	
 private:
 
+	std::vector<std::string> wordList;
+
 	//void ExtractWordsWithLetter(std::vector<std::string> &wordList, std::string dictionaryFile, char letter);
-	void VerifyAndAddValidWords(std::vector<std::string> &wordList, std::string line, char &currentChar, int &validWords);
+	void VerifyAndAddValidWords(std::string line);
+
+	char currentChar;
+	int headlinesDetected = 0;
 
 	int NumberOfSimpleWords;
 	int NumberOfNonDuplicateSimpleWords;

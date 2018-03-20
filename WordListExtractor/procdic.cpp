@@ -23,21 +23,21 @@ int main()
 	cout << "Extracting simple words from file " << dictionary << ",\n";
 	cout << "beginning with letter ...\n";
 
-	vector<string> wordList = extractor.ProcessDictionary(dictionary);
+	extractor.ProcessDictionary(dictionary);
 
 	cout << endl;
 	cout << "Number of simple words = " << extractor.GetSimpleWords() << endl << endl;
 
 	cout << "Sorting words ...\n\n";
-	extractor.SortWordList(wordList);
+	extractor.SortWordList();
 
 	cout << "Removing duplicate words ... \n\n";
-	extractor.RemoveDuplicateWords(wordList);
+	extractor.RemoveDuplicateWords();
 
 	cout << "Number of non-duplicate simple words = " << extractor.GetNonDuplicateSimpleWords() << endl << endl;
 
-	cout << "Saving words into file " << dictionary << " ... \n\n";
-	extractor.SaveWordList(wordList, wordListFile);
+	cout << "Saving words into file " << wordListFile << " ... \n\n";
+	extractor.SaveWordList(wordListFile);
 
 	cout << "End of processing.\n";
 	return 0;
