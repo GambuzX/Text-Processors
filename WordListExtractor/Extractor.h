@@ -25,7 +25,6 @@ private:
 	char currentChar;
 	int headlinesDetected = 0;
 
-	int NumberOfSimpleWords;
 	int NumberOfNonDuplicateSimpleWords;
 
 };

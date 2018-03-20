@@ -69,7 +69,7 @@ void Extractor::SaveWordList(string wordListFile)
 }
 
 //Getter for the number of simple words
-int Extractor::GetSimpleWords() const {	return NumberOfSimpleWords;}
+int Extractor::GetSimpleWords() const {	return headlinesDetected;}
 
 //Getter for the number of non duplicate simple words
 int Extractor::GetNonDuplicateSimpleWords() const {	return NumberOfNonDuplicateSimpleWords;}
@@ -114,6 +114,29 @@ void Extractor::VerifyAndAddValidWords(string line)
 	{
 		wordList.push_back(line);
 		headlinesDetected++;
+	}
+	else // if line has multiple words
+	{
+		bool finishedLine = false;
+		do
+		{
+			size_t ColonPosition = line.find_first_of(';');
+			if (ColonPosition == string::npos)
+			{
+				finishedLine = true; //if no more colons, finish the loop when it reaches the end
+				wordList.push_back(line); //adds the remaining word
+				headlinesDetected++;
+			}
+			else
+			{
+				string substring = line.substr(0, ColonPosition); //stores a substring containing the word until the colon
+				line.erase(0, ColonPosition + 2); //erases the word, colon and space
+				wordList.push_back(substring);
+				headlinesDetected++;
+			}
+
+		} while (!finishedLine);
+
 	}
 
 	//TODO Add words to vector in lines with colon
