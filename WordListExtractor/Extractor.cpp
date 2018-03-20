@@ -8,7 +8,7 @@
 using namespace std;
 
 //Extracts all the headlines from the dictionary, returning a vector with the resulting strings
-std::vector<std::string> Extractor::ProcessDictionary(string dictionary)
+/*std::vector<std::string> Extractor::ProcessDictionary(string dictionary)
 {
 	vector<string> WordList;
 
@@ -20,6 +20,31 @@ std::vector<std::string> Extractor::ProcessDictionary(string dictionary)
 	}
 
 
+
+	return WordList;
+}*/
+
+std::vector<std::string> Extractor::ProcessDictionary(string dictionary)
+{
+	vector<string> WordList;
+
+	char CurrentChar = 'A';
+	int wordCounter = 0; //TODO Implement word counter to add dots
+	string line;
+
+	ifstream dict(dictionary); //opens the dictionary file for reading
+
+	while (!dict.eof())
+	{
+		getline(dict, line); //reads a line
+
+		if (line.length() > 0 && (int) line.at(0) >= 0  && (int) line.at(0) <= 255 && isupper(line.at(0)))
+		{
+			VerifyAndAddValidWords(WordList, line, CurrentChar);
+		}
+	}
+
+	dict.close();
 
 	return WordList;
 }
@@ -50,7 +75,7 @@ int Extractor::GetNonDuplicateSimpleWords() const {	return NumberOfNonDuplicateS
 
 
 //Given a line, searches for valid headlines and adds them to the wordList
-void Extractor::VerifyAndAddValidWords(vector<string> &wordList, string line)
+void Extractor::VerifyAndAddValidWords(vector<string> &wordList, string line, char & currentChar)
 {
 	bool hasColon = false; //bool to keep track if the line has a colon or not
 
@@ -76,7 +101,7 @@ void Extractor::VerifyAndAddValidWords(vector<string> &wordList, string line)
 }
 
 //Method to extract the headlines starting with the specified letter from the given dictionary, adding them to the wordList vector
-void Extractor::ExtractWordsWithLetter(std::vector<std::string>& wordList, string dictionaryFile, char letter)
+/*void Extractor::ExtractWordsWithLetter(std::vector<std::string>& wordList, string dictionaryFile, char letter)
 {
 	//TODO Improve efficiency
 
@@ -100,6 +125,6 @@ void Extractor::ExtractWordsWithLetter(std::vector<std::string>& wordList, strin
 
 	cout << endl;
 	return;
-}
+}*/
 
 
