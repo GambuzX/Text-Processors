@@ -7,6 +7,7 @@
 
 using namespace std;
 
+Extractor extractor;
 string AskDictionaryFile();
 string AskWordListFile();
 
@@ -17,8 +18,12 @@ int main()
 
 	string dictionary = AskDictionaryFile();
 	string wordList = AskWordListFile();
+	cout << endl;
 
-	cout << dictionary << endl << wordList << endl;
+	cout << "Extracting simple words from file " << dictionary << ",\n";
+	cout << "beginning with letter ...\n";
+
+	cout << endl;
 	return 0;
 }
 
