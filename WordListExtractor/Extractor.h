@@ -14,6 +14,7 @@ public:
 	void StoreWordListInFile(std::vector<std::string> &WordList);
 	
 private:
+
 	int NumberOfSimpleWords;
 	int NumberOfNonDuplicateSimpleWords;
 

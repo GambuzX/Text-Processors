@@ -9,11 +9,14 @@ std::vector<std::string> Extractor::ProcessDictionary()
 {
 	vector<string> WordList;
 
+
+
 	return WordList;
 }
 
 void Extractor::SortWordList(std::vector<std::string>& WordList)
 {
+
 
 	return;
 }
