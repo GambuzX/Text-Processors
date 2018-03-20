@@ -17,13 +17,28 @@ int main()
 	cout << "=======================================\n";
 
 	string dictionary = AskDictionaryFile();
-	string wordList = AskWordListFile();
+	string wordListFile = AskWordListFile();
 	cout << endl;
 
 	cout << "Extracting simple words from file " << dictionary << ",\n";
 	cout << "beginning with letter ...\n";
 
-	cout << endl;
+	vector<string> wordList = extractor.ProcessDictionary(dictionary);
+
+	cout << "Number of simple words = " << extractor.GetSimpleWords() << endl << endl;
+
+	cout << "Sorting words ...\n\n";
+	extractor.SortWordList(wordList);
+
+	cout << "Removing duplicate words ... \n\n";
+	extractor.RemoveDuplicateWords(wordList);
+
+	cout << "Number of non-duplicate simple words = " << extractor.GetNonDuplicateSimpleWords() << endl << endl;
+
+	cout << "Saving words into file " << dictionary << " ... \n\n";
+	extractor.SaveWordList(wordList, wordListFile);
+
+	cout << "End of processing.\n";
 	return 0;
 }
 

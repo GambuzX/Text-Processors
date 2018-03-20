@@ -11,7 +11,9 @@ public:
 	std::vector<std::string> ProcessDictionary(std::string dictionary);
 	void SortWordList(std::vector<std::string> &WordList);
 	void RemoveDuplicateWords(std::vector<std::string> &WordList);
-	void StoreWordListInFile(std::vector<std::string> &WordList, std::string wordListFile);
+	void SaveWordList(std::vector<std::string> &WordList, std::string wordListFile);
+	int GetSimpleWords() const;
+	int GetNonDuplicateSimpleWords() const;
 	
 private:
 
