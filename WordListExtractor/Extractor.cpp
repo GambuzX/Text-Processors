@@ -3,7 +3,10 @@
 #pragma once
 #include <iostream>
 #include <fstream>
+#include <algorithm>
+#include <vector>
 #include "Extractor.h"
+
 
 using namespace std;
 
@@ -32,7 +35,7 @@ void Extractor::ProcessDictionary(string dictionary)
 //Sorts the wordList vector using bubblesort method
 void Extractor::SortWordList()
 {
-	unsigned iterations = wordList.size() - 1;
+	/*unsigned iterations = wordList.size() - 1;
 
 	while (iterations > 0)
 	{
@@ -46,7 +49,9 @@ void Extractor::SortWordList()
 			}
 		}
 		iterations--;
-	}
+	}*/
+
+	sort(wordList.begin(), wordList.end());
 	return;
 }
 
