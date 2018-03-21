@@ -10,8 +10,6 @@ using namespace std;
 //Extracts all the headlines from the dictionary, adding them to the class wordList
 void Extractor::ProcessDictionary(string dictionary)
 {
-	vector<string> WordList;
-
 	string line;
 
 	ifstream dict(dictionary); //opens the dictionary file for reading
@@ -20,7 +18,7 @@ void Extractor::ProcessDictionary(string dictionary)
 	{
 		getline(dict, line); //reads a line
 
-		if (line.length() > 0 && (int) line.at(0) >= 0  && (int) line.at(0) <= 255 && isupper(line.at(0)))
+		if (line.length() > 0 && (int) line.at(0) >= 0  && (int) line.at(0) <= 255 && isupper(line.at(0))) // filtering obviously uninteresting lines
 		{
 			VerifyAndAddValidWords(line);
 		}
@@ -46,6 +44,15 @@ void Extractor::RemoveDuplicateWords()
 //Saves the word list vector to a file
 void Extractor::SaveWordList(string wordListFile)
 {
+	ofstream OutputFile(wordListFile);
+
+	for (string headline : wordList)
+	{
+		OutputFile << headline << '\n'; //add all the extracted headlines to a file
+	}
+
+	OutputFile.close();
+
 	return;
 }
 
