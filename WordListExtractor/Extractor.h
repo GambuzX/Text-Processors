@@ -19,12 +19,11 @@ private:
 
 	std::vector<std::string> wordList;
 
-	//void ExtractWordsWithLetter(std::vector<std::string> &wordList, std::string dictionaryFile, char letter);
 	void VerifyAndAddValidWords(std::string line);
+	bool isValidWord(std::string);
 
 	char currentChar;
 	int headlinesDetected = 0;
-
 	int NumberOfNonDuplicateSimpleWords;
 
 };

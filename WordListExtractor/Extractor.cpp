@@ -12,8 +12,6 @@ void Extractor::ProcessDictionary(string dictionary)
 {
 	vector<string> WordList;
 
-	 //TODO Implement word counter to add dots
-
 	string line;
 
 	ifstream dict(dictionary); //opens the dictionary file for reading
@@ -68,17 +66,56 @@ void Extractor::VerifyAndAddValidWords(string line)
 		if (line.at(i) == ';') hasColon = true;
 		if ((int)line.at(i) > 255 || (int) line.at(i) < 0) return; //if not a valid ASCII char, return
 
-		if (!isupper(line.at(i)) && line.at(i) != ';') //if it is not an uppercase letter or a ';'
+		/*if (!isupper(line.at(i)) && line.at(i) != ';') //if it is not an uppercase letter or a ';'
 		{
 			if (line.at(i) == ' ' && line.at(i-1) == ';') //if it is a space but has a ';' before, maintain has valid
 				continue;
 			else
 				return;
+		}*/
+
+		if (islower(line.at(i))) //if it has lowercase letters end
+		{
+			return;
 		}
 	}
 
-	//If it gets to this point, its because the line HAS valid headlines
+	//If it gets to this point, its because the line only has Uppercase letters, symbols and spaces
+	//CODE TO DEAL WITH WORD VALIDITY AND INSERTION IN THE VECTOR
+	if (!hasColon) //if line with only a word
+	{
+		if (!isValidWord(line)) return;//If not a valid word, end
+		wordList.push_back(line);
+		headlinesDetected++;
+	}
+	else // if line has colon
+	{
+		bool finishedLine = false;
+		string lineCopy = line;
+		do
+		{
+			size_t ColonPosition = lineCopy.find_first_of(';');
+			if (ColonPosition == string::npos)
+			{
+				finishedLine = true; //if no more colons, finish the loop when it reaches the end
+				if (!isValidWord(lineCopy)) return; //If not a valid word, end
+				wordList.push_back(lineCopy); //adds the remaining word
+				headlinesDetected++;
+				
+			}
+			else
+			{
+				string substring = lineCopy.substr(0, ColonPosition); //stores a substring containing the word until the colon
+				lineCopy.erase(0, ColonPosition + 2); //erases the word, colon and space
+				if (!isValidWord(substring)) return; //If not a valid word, end
+				wordList.push_back(substring);
+				headlinesDetected++;
+			}
 
+		} while (!finishedLine);
+	}
+
+	//UI STUFF
 	if (line.at(0) != currentChar) //When changing starting letter
 	{
 		if (!(currentChar == 'C' && line.at(0) == 'R')) //There is a line starting with 'R' between the 'C' Words. This prevents unwanted behaviour
@@ -92,40 +129,23 @@ void Extractor::VerifyAndAddValidWords(string line)
 		if (headlinesDetected % 100 == 0)
 			cout << '.';
 	}
-
-	if (!hasColon) //if line with only a word
-	{
-		wordList.push_back(line);
-		headlinesDetected++;
-	}
-	else // if line has multiple words
-	{
-		bool finishedLine = false;
-		do
-		{
-			size_t ColonPosition = line.find_first_of(';');
-			if (ColonPosition == string::npos)
-			{
-				finishedLine = true; //if no more colons, finish the loop when it reaches the end
-				wordList.push_back(line); //adds the remaining word
-				headlinesDetected++;
-				cout << line << endl;
-			}
-			else
-			{
-				string substring = line.substr(0, ColonPosition); //stores a substring containing the word until the colon
-				line.erase(0, ColonPosition + 2); //erases the word, colon and space
-				wordList.push_back(substring);
-				headlinesDetected++;
-			}
-
-		} while (!finishedLine);
-
-	}
-
 	//TODO Deal with lines like ABRAUM; ABRAUM SALTS
 
 	return;
+}
+
+//Checks if a given word is valid (if it is a headline). Assumes the word only has uppercase letters, symbols (not ';') and spaces
+bool Extractor::isValidWord(std::string word)
+{
+	if (word.length() <= 0) return false; //if an empty string, return false
+
+	for (int i = 0; i < word.length(); i++)
+	{
+		if (!isupper(word.at(i)))
+			return false;
+	}
+
+	return true; //if none of the above tests fail, it's a valid word
 }
 
 
