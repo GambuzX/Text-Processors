@@ -29,10 +29,10 @@ int main()
 	cout << "Number of simple words = " << extractor.GetSimpleWords() << endl << endl;
 
 	cout << "Sorting words ...\n\n";
-	extractor.SortWordList();
+	//extractor.SortWordList();
 
 	cout << "Removing duplicate words ... \n\n";
-	extractor.RemoveDuplicateWords();
+	//extractor.RemoveDuplicateWords();
 
 	cout << "Number of non-duplicate simple words = " << extractor.GetNonDuplicateSimpleWords() << endl << endl;
 

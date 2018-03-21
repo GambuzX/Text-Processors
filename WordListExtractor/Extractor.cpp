@@ -29,15 +29,46 @@ void Extractor::ProcessDictionary(string dictionary)
 	return;
 }
 
-//Sorts the wordList vector
+//Sorts the wordList vector using bubblesort method
 void Extractor::SortWordList()
 {
+	unsigned iterations = wordList.size() - 1;
+
+	while (iterations > 0)
+	{
+		for (unsigned i = 0; i < iterations; i++)
+		{
+			if (wordList.at(i) > wordList.at(i + 1))
+			{
+				string temp = wordList.at(i + 1);
+				wordList.at(i + 1) = wordList.at(i);
+				wordList.at(i) = temp;
+			}
+		}
+		iterations--;
+	}
 	return;
 }
 
 //Removes duplicate words from the vector (assuming it is sorted)
 void Extractor::RemoveDuplicateWords()
 {
+
+	unsigned length = wordList.size();
+	unsigned index = 0;
+
+	while (index < length - 1)
+	{
+		if (wordList.at(index) == wordList.at(index + 1))
+		{
+			wordList.erase(wordList.begin() + index);
+			length--;
+		}
+		else
+		{
+			index++;
+		}
+	}
 	return;
 }
 
@@ -156,3 +187,42 @@ bool Extractor::isValidWord(std::string word)
 }
 
 
+/*
+void bubblesort(vector<string>& v)
+{
+unsigned iterations = v.size() - 1;
+
+while (iterations > 0) {
+for (unsigned i = 0; i < iterations; i++) {
+if (v.at(i) > v.at(i + 1)) {
+string temp = v.at(i + 1);
+v.at(i + 1) = v.at(i);
+v.at(i) = temp;
+}
+}
+iterations--;
+}
+return;
+}
+
+
+
+void RemoveDuplicateWords(std::vector<string>& v)
+{
+unsigned length = v.size();
+unsigned index = 0;
+
+while (index < v.size()-1)
+{
+if (v.at(index) == v.at(index + 1))
+{
+v.erase(v.begin()+index);
+}
+else
+{
+index++;
+}
+}
+return;
+}
+*/
