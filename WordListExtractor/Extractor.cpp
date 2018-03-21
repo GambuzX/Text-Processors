@@ -7,23 +7,6 @@
 
 using namespace std;
 
-//Extracts all the headlines from the dictionary, returning a vector with the resulting strings
-/*std::vector<std::string> Extractor::ProcessDictionary(string dictionary)
-{
-	vector<string> WordList;
-
-	for (char letter = 'A'; letter < 'Z'; letter++) //for each letter from A to Z
-	{
-		cout << letter << endl;
-		ExtractWordsWithLetter(WordList, dictionary, letter);
-		//Missing the dots count -> One dot per 100 headlines
-	}
-
-
-
-	return WordList;
-}*/
-
 //Extracts all the headlines from the dictionary, adding them to the class wordList
 void Extractor::ProcessDictionary(string dictionary)
 {
@@ -142,36 +125,7 @@ void Extractor::VerifyAndAddValidWords(string line)
 
 	//TODO Deal with lines like ABRAUM; ABRAUM SALTS
 
-	//cout << line << endl;
-
 	return;
 }
-
-//Method to extract the headlines starting with the specified letter from the given dictionary, adding them to the wordList vector
-/*void Extractor::ExtractWordsWithLetter(std::vector<std::string>& wordList, string dictionaryFile, char letter)
-{
-	//TODO Improve efficiency
-
-	int wordCounter = 0; //TODO Implement word counter to add dots
-	string line;
-
-	ifstream dict(dictionaryFile); //opens the dictionary file for reading
-
-
-	while (!dict.eof() )
-	{
-		getline(dict, line); //reads a line
-
-		if (line.length() > 0 && line.at(0) == letter)
-		{
-			VerifyAndAddValidWords(wordList, line);
-		}
-	}
-
-	dict.close();
-
-	cout << endl;
-	return;
-}*/
 
 
