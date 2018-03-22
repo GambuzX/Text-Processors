@@ -10,6 +10,7 @@ using namespace std;
 Extractor extractor;
 string AskDictionaryFile();
 string AskWordListFile();
+void VerifyFileExists(string);
 
 int main()
 {
@@ -17,6 +18,8 @@ int main()
 	cout << "=======================================\n";
 
 	string dictionary = AskDictionaryFile();
+	VerifyFileExists(dictionary);
+
 	string wordListFile = AskWordListFile();
 	cout << endl;
 
@@ -61,6 +64,19 @@ string AskWordListFile()
 	cin >> wordList;
 
 	return wordList;
+}
+
+void VerifyFileExists(string name)
+{
+	ifstream file(name);
+
+	if (file.fail())
+	{
+		cerr << "File does not exist. Exiting process...\n";
+		exit(1);
+	}
+	file.close();
+	return;
 }
 
 	
