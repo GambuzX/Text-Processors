@@ -14,12 +14,11 @@ using namespace std;
 void Extractor::ProcessDictionary(string dictionary)
 {
 	string line;
-
-	ifstream dict(dictionary); //opens the dictionary file for reading
+	ifstream dict(dictionary);
 
 	while (!dict.eof())
 	{
-		getline(dict, line); //reads a line
+		getline(dict, line); 
 
 		if (line.length() > 0 && (int) line.at(0) >= 0  && (int) line.at(0) <= 255 && isupper(line.at(0))) // filtering obviously uninteresting lines
 		{
@@ -32,14 +31,18 @@ void Extractor::ProcessDictionary(string dictionary)
 	return;
 }
 
+//===================================================================================================================================================================================================
 //Sorts the wordList vector using bubblesort method
+
 void Extractor::SortWordList()
 {
 	sort(wordList.begin(), wordList.end());
 	return;
 }
 
+//===================================================================================================================================================================================================
 //Removes duplicate words from the vector (assuming it is sorted)
+
 void Extractor::RemoveDuplicateWords()
 {
 
@@ -61,7 +64,9 @@ void Extractor::RemoveDuplicateWords()
 	return;
 }
 
+//===================================================================================================================================================================================================
 //Saves the word list vector to a file
+
 void Extractor::SaveWordList(string wordListFile)
 {
 	ofstream OutputFile(wordListFile);
@@ -76,31 +81,38 @@ void Extractor::SaveWordList(string wordListFile)
 	return;
 }
 
+//===================================================================================================================================================================================================
 //Getter for the number of simple words
+
 int Extractor::GetSimpleWords() const {	return headlinesDetected;}
 
+//===================================================================================================================================================================================================
 //Getter for the number of non duplicate simple words
+
 int Extractor::GetNonDuplicateSimpleWords() const {	return NumberOfNonDuplicateSimpleWords;}
 
-
+//===================================================================================================================================================================================================
 //Given a line, searches for valid headlines and adds them to the wordList
+
 void Extractor::VerifyAndAddValidWords(string line)
 {
-	bool hasColon = false; //bool to keep track if the line has a colon or not
-
+	bool hasColon = false;
 	for (int i = 0; i < line.length(); i ++) //for each letter in the line
 	{
 		if (line.at(i) == ';') hasColon = true;
 		if ((int)line.at(i) > 255 || (int) line.at(i) < 0) return; //if not a valid ASCII char, return
 
-		if (islower(line.at(i))) //if it has lowercase letters end
+		if (islower(line.at(i))) //if it has lowercase letters return immediately
 		{
 			return;
 		}
 	}
-
 	//If it gets to this point, its because the line only has Uppercase letters, symbols and spaces
-	//CODE TO DEAL WITH WORD VALIDITY AND INSERTION IN THE VECTOR
+
+	/////////////////////////////////////////////////////////////////
+	// CODE TO DEAL WITH WORD VALIDITY AND INSERTION IN THE VECTOR //
+	/////////////////////////////////////////////////////////////////
+
 	if (!hasColon) //if line with only a word
 	{
 		if (!isValidWord(line)) return;//If not a valid word, end
@@ -130,11 +142,13 @@ void Extractor::VerifyAndAddValidWords(string line)
 				wordList.push_back(substring);
 				headlinesDetected++;
 			}
-
 		} while (!finishedLine);
 	}
 
-	//UI STUFF
+	///////////////////////////////////////
+	// CODE TO UPDATE THE USER INTERFACE //
+	///////////////////////////////////////
+
 	if (line.at(0) != currentChar) //When changing starting letter
 	{
 		if (!(currentChar == 'C' && line.at(0) == 'R')) //There is a line starting with 'R' between the 'C' Words. This prevents unwanted behaviour
@@ -143,7 +157,7 @@ void Extractor::VerifyAndAddValidWords(string line)
 			cout << endl << currentChar << endl;
 		}
 	}
-	else //When still with the same starting letter
+	else //When starting letter does not change
 	{
 		if (headlinesDetected % 100 == 0)
 			cout << '.';
@@ -152,7 +166,9 @@ void Extractor::VerifyAndAddValidWords(string line)
 	return;
 }
 
+//===================================================================================================================================================================================================
 //Checks if a given word is valid (if it is a headline). Assumes the word only has uppercase letters, symbols (not ';') and spaces
+
 bool Extractor::isValidWord(std::string word)
 {
 	if (word.length() <= 0) return false; //if an empty string, return false

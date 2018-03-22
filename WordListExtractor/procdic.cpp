@@ -48,7 +48,8 @@ int main()
 	return 0;
 }
 
-//Add functions for UI stuff
+//===================================================================================================================================================================================================
+//Asks for the dictionary file name
 
 string AskDictionaryFile()
 {
@@ -59,6 +60,9 @@ string AskDictionaryFile()
 	return dictionary;
 }
 
+//===================================================================================================================================================================================================
+//Asks what the word list file name should be
+
 string AskWordListFile()
 {
 	string wordList;
@@ -67,6 +71,9 @@ string AskWordListFile()
 
 	return wordList;
 }
+
+//===================================================================================================================================================================================================.
+//Verifies the dictionary file exists
 
 void VerifyInputFileExists(string name)
 {
@@ -79,6 +86,9 @@ void VerifyInputFileExists(string name)
 	file.close();
 	return;
 }
+
+//===================================================================================================================================================================================================
+//Checks if the specified output file name already is in use. If it is, asks if the user wants to overwrite it
 
 void CheckIfOutputFileExists(string name)
 {
