@@ -10,8 +10,8 @@ class Extractor
 public:
 	void ProcessDictionary(std::string dictionary);
 	void SortWordList();
-	void RemoveDuplicateWords();
-	void SaveWordList(std::string wordListFile);
+	void MarkDuplicateWordsAsInvalid();
+	void SaveValidWords(std::string wordListFile);
 	int GetSimpleWords() const;
 	int GetNonDuplicateSimpleWords() const;
 	
@@ -23,7 +23,7 @@ private:
 	bool isValidWord(std::string);
 
 	char currentChar;
-	int headlinesDetected = 0;
+	int NumberOfSimpleWords = 0;
 	int NumberOfNonDuplicateSimpleWords;
 
 };

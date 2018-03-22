@@ -37,12 +37,12 @@ int main()
 	extractor.SortWordList();
 
 	cout << "Removing duplicate words ... \n\n";
-	//extractor.RemoveDuplicateWords();
+	extractor.MarkDuplicateWordsAsInvalid();
 
 	cout << "Number of non-duplicate simple words = " << extractor.GetNonDuplicateSimpleWords() << endl << endl;
 
 	cout << "Saving words into file " << wordListFile << " ... \n\n";
-	extractor.SaveWordList(wordListFile);
+	extractor.SaveValidWords(wordListFile);
 
 	cout << "End of processing.\n";
 	return 0;

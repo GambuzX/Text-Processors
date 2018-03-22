@@ -43,12 +43,14 @@ void Extractor::SortWordList()
 void Extractor::MarkDuplicateWordsAsInvalid()
 {
 	unsigned length = wordList.size();
+	NumberOfNonDuplicateSimpleWords = NumberOfSimpleWords;
 
 	for (int i = 0; i < length - 1; i++)
 	{
 		if (wordList.at(i) == wordList.at(i + 1))
 		{
 			wordList.at(i) = "x"; //swap duplicates with "x"
+			NumberOfNonDuplicateSimpleWords--;
 		}
 	}
 	return;
@@ -79,7 +81,7 @@ void Extractor::SaveValidWords(string wordListFile)
 //===================================================================================================================================================================================================
 //Getter for the number of simple words
 
-int Extractor::GetSimpleWords() const {	return headlinesDetected;}
+int Extractor::GetSimpleWords() const {	return NumberOfSimpleWords;}
 
 //===================================================================================================================================================================================================
 //Getter for the number of non duplicate simple words
@@ -112,7 +114,7 @@ void Extractor::VerifyAndAddValidWords(string line)
 	{
 		if (!isValidWord(line)) return;//If not a valid word, end
 		wordList.push_back(line);
-		headlinesDetected++;
+		NumberOfSimpleWords++;
 	}
 	else // if line has colon
 	{
@@ -126,7 +128,7 @@ void Extractor::VerifyAndAddValidWords(string line)
 				finishedLine = true; //if no more colons, finish the loop when it reaches the end
 				if (!isValidWord(lineCopy)) return; //If not a valid word, end
 				wordList.push_back(lineCopy); //adds the remaining word
-				headlinesDetected++;
+				NumberOfSimpleWords++;
 				
 			}
 			else
@@ -135,7 +137,7 @@ void Extractor::VerifyAndAddValidWords(string line)
 				lineCopy.erase(0, ColonPosition + 2); //erases the word, colon and space
 				if (!isValidWord(substring)) return; //If not a valid word, end
 				wordList.push_back(substring);
-				headlinesDetected++;
+				NumberOfSimpleWords++;
 			}
 		} while (!finishedLine);
 	}
@@ -154,10 +156,9 @@ void Extractor::VerifyAndAddValidWords(string line)
 	}
 	else //When starting letter does not change
 	{
-		if (headlinesDetected % 100 == 0)
+		if (NumberOfSimpleWords % 100 == 0)
 			cout << '.';
 	}
-
 	return;
 }
 
