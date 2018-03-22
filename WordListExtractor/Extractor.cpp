@@ -16,10 +16,8 @@ void Extractor::ProcessDictionary(string dictionary)
 	string line;
 	ifstream dict(dictionary);
 
-	while (!dict.eof())
+	while (getline(dict, line))
 	{
-		getline(dict, line); 
-
 		if (line.length() > 0 && (int) line.at(0) >= 0  && (int) line.at(0) <= 255 && isupper(line.at(0))) // filtering obviously uninteresting lines
 		{
 			VerifyAndAddValidWords(line);
@@ -27,7 +25,6 @@ void Extractor::ProcessDictionary(string dictionary)
 	}
 
 	dict.close();
-
 	return;
 }
 
@@ -71,9 +68,11 @@ void Extractor::SaveWordList(string wordListFile)
 {
 	ofstream OutputFile(wordListFile);
 
-	for (string headline : wordList)
+	unsigned length = wordList.size();
+	for (int i = 0; i < length; i ++)
 	{
-		OutputFile << headline << '\n'; //add all the extracted headlines to a file
+		OutputFile << wordList.at(i); //add all the extracted headlines to a file
+		if (i < length - 1) OutputFile << '\n'; //add newlines (except on the last word)
 	}
 
 	OutputFile.close();
