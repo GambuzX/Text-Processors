@@ -38,41 +38,37 @@ void Extractor::SortWordList()
 }
 
 //===================================================================================================================================================================================================
-//Removes duplicate words from the vector (assuming it is sorted)
+//Swaps duplicate words from the vector (assuming it is sorted) for "x"
 
-void Extractor::RemoveDuplicateWords()
+void Extractor::MarkDuplicateWordsAsInvalid()
 {
-
 	unsigned length = wordList.size();
-	unsigned index = 0;
 
-	while (index < length - 1)
+	for (int i = 0; i < length - 1; i++)
 	{
-		if (wordList.at(index) == wordList.at(index + 1))
+		if (wordList.at(i) == wordList.at(i + 1))
 		{
-			wordList.erase(wordList.begin() + index);
-			length--;
-		}
-		else
-		{
-			index++;
+			wordList.at(i) = "x"; //swap duplicates with "x"
 		}
 	}
 	return;
 }
 
 //===================================================================================================================================================================================================
-//Saves the word list vector to a file
+//Saves the valid words (different from "x") from the word list vector to a file
 
-void Extractor::SaveWordList(string wordListFile)
+void Extractor::SaveValidWords(string wordListFile)
 {
 	ofstream OutputFile(wordListFile);
 
 	unsigned length = wordList.size();
 	for (int i = 0; i < length; i ++)
 	{
-		OutputFile << wordList.at(i); //add all the extracted headlines to a file
-		if (i < length - 1) OutputFile << '\n'; //add newlines (except on the last word)
+		if (wordList.at(i) != "x") //duplicate elements were changed to "x"
+		{
+			OutputFile << wordList.at(i); //add all the extracted headlines to a file
+			if (i < length - 1) OutputFile << '\n'; //add newlines (except on the last word)
+		}
 	}
 
 	OutputFile.close();
