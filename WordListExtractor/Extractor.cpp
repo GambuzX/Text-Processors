@@ -35,22 +35,6 @@ void Extractor::ProcessDictionary(string dictionary)
 //Sorts the wordList vector using bubblesort method
 void Extractor::SortWordList()
 {
-	/*unsigned iterations = wordList.size() - 1;
-
-	while (iterations > 0)
-	{
-		for (unsigned i = 0; i < iterations; i++)
-		{
-			if (wordList.at(i) > wordList.at(i + 1))
-			{
-				string temp = wordList.at(i + 1);
-				wordList.at(i + 1) = wordList.at(i);
-				wordList.at(i) = temp;
-			}
-		}
-		iterations--;
-	}*/
-
 	sort(wordList.begin(), wordList.end());
 	return;
 }
@@ -109,14 +93,6 @@ void Extractor::VerifyAndAddValidWords(string line)
 		if (line.at(i) == ';') hasColon = true;
 		if ((int)line.at(i) > 255 || (int) line.at(i) < 0) return; //if not a valid ASCII char, return
 
-		/*if (!isupper(line.at(i)) && line.at(i) != ';') //if it is not an uppercase letter or a ';'
-		{
-			if (line.at(i) == ' ' && line.at(i-1) == ';') //if it is a space but has a ';' before, maintain has valid
-				continue;
-			else
-				return;
-		}*/
-
 		if (islower(line.at(i))) //if it has lowercase letters end
 		{
 			return;
@@ -172,7 +148,6 @@ void Extractor::VerifyAndAddValidWords(string line)
 		if (headlinesDetected % 100 == 0)
 			cout << '.';
 	}
-	//TODO Deal with lines like ABRAUM; ABRAUM SALTS
 
 	return;
 }
@@ -190,44 +165,3 @@ bool Extractor::isValidWord(std::string word)
 
 	return true; //if none of the above tests fail, it's a valid word
 }
-
-
-/*
-void bubblesort(vector<string>& v)
-{
-unsigned iterations = v.size() - 1;
-
-while (iterations > 0) {
-for (unsigned i = 0; i < iterations; i++) {
-if (v.at(i) > v.at(i + 1)) {
-string temp = v.at(i + 1);
-v.at(i + 1) = v.at(i);
-v.at(i) = temp;
-}
-}
-iterations--;
-}
-return;
-}
-
-
-
-void RemoveDuplicateWords(std::vector<string>& v)
-{
-unsigned length = v.size();
-unsigned index = 0;
-
-while (index < v.size()-1)
-{
-if (v.at(index) == v.at(index + 1))
-{
-v.erase(v.begin()+index);
-}
-else
-{
-index++;
-}
-}
-return;
-}
-*/
