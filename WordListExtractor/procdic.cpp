@@ -10,7 +10,8 @@ using namespace std;
 Extractor extractor;
 string AskDictionaryFile();
 string AskWordListFile();
-void VerifyFileExists(string);
+void VerifyInputFileExists(string);
+void CheckIfOutputFileExists(string);
 
 int main()
 {
@@ -18,9 +19,10 @@ int main()
 	cout << "=======================================\n";
 
 	string dictionary = AskDictionaryFile();
-	VerifyFileExists(dictionary);
+	VerifyInputFileExists(dictionary);
 
 	string wordListFile = AskWordListFile();
+	CheckIfOutputFileExists(wordListFile);
 	cout << endl;
 
 	cout << "Extracting simple words from file " << dictionary << ",\n";
@@ -66,16 +68,30 @@ string AskWordListFile()
 	return wordList;
 }
 
-void VerifyFileExists(string name)
+void VerifyInputFileExists(string name)
 {
 	ifstream file(name);
-
 	if (file.fail())
 	{
 		cerr << "File does not exist. Exiting process...\n";
 		exit(1);
 	}
 	file.close();
+	return;
+}
+
+void CheckIfOutputFileExists(string name)
+{
+	ifstream file(name);
+	if (file.is_open())
+	{
+		char answer;
+		cout << "A file with that name already exists. Do you wish to overwrite it? ";
+		cin >> answer;
+
+		if (toupper(answer) == 'N')
+			exit(1);
+	}
 	return;
 }
 
