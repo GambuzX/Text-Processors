@@ -18,6 +18,9 @@
     <ClCompile Include="playwords.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WordMaster.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WordMaster.h">

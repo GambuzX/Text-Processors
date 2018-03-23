@@ -9,8 +9,13 @@ WordMaster wordMaster;
 
 int main()
 {
+	//Ask for wordlist
+	//Check if it exists
+	//if it exists, call wordMaster.ReadAndStoreWordList(file)
+	//otherwise, end
 
 
 
 	return 0;
 }
+

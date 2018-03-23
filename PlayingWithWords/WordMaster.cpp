@@ -5,6 +5,10 @@
 
 using namespace std;
 
+void WordMaster::ReadAndStoreWordList(std::string filename)
+{
+}
+
 void WordMaster::CheckWordInWordList()
 {
 }

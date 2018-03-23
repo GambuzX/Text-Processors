@@ -6,6 +6,7 @@
 class WordMaster
 {
 public:
+	void ReadAndStoreWordList(std::string filename);
 	void CheckWordInWordList();
 	void GuessRandomScrambledWord();
 	void ShowWordsUsingNLetters();
@@ -13,5 +14,6 @@ public:
 	void WildcardMatchingWords();
 
 private:
+	vector<string> wordList;
 
 };
