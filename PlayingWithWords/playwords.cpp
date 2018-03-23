@@ -26,6 +26,9 @@ int main()
 	cout << "What is the name of the wordlist you want to read? ";
 	cin >> wordListName;
 	VerifyWordListExists(wordListName);
+	wordMaster.ReadAndStoreWordList(wordListName);
+
+
 
 	//Ask for wordlist
 	//Check if it exists

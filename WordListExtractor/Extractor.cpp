@@ -74,7 +74,6 @@ void Extractor::SaveValidWords(string wordListFile)
 	}
 
 	OutputFile.close();
-
 	return;
 }
 
