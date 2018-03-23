@@ -14,6 +14,6 @@ public:
 	void WildcardMatchingWords();
 
 private:
-	vector<string> wordList;
+	std::vector<std::string> wordList;
 
 };
