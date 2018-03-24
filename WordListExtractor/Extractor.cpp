@@ -134,7 +134,7 @@ void Extractor::VerifyAndAddValidWords(string line)
 			{
 				string substring = lineCopy.substr(0, ColonPosition); //stores a substring containing the word until the colon
 				lineCopy.erase(0, ColonPosition + 2); //erases the word, colon and space
-				if (!isValidWord(substring)) return; //If not a valid word, end
+				if (!isValidWord(substring)) continue; //If not a valid word, continue to the next word
 				wordList.push_back(substring);
 				NumberOfSimpleWords++;
 			}
