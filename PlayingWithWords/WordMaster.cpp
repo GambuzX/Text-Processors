@@ -25,8 +25,14 @@ void WordMaster::CheckWordInWordList()
 	cout << "Word to search ? ";
 	cin >> userWord;
 
+	for (char letter : userWord)
+		letter = toupper(letter);
 
-	int bottom, middle, top;
+	///////////////////
+	// Binary Search //
+	///////////////////
+
+	int bottom, middle, top; 
 	bottom = 0;
 	top = wordList.size() - 1;
 	bool found = false;
@@ -47,15 +53,17 @@ void WordMaster::CheckWordInWordList()
 	}
 
 	if (wordList.at(bottom) == userWord)
-		return bottom;
-	else if (wordList.at(top) == value)
-		return top;
-	else if (wordList.at(middle) == value)
-		return middle;
+		found = true;
+	else if (wordList.at(top) == userWord)
+		found = true;
+	else if (wordList.at(middle) == userWord)
+		found = true;
 
-	return -1;
-}
-	*/
+	
+	if (found)
+		cout << "The word " << userWord << " is in the list.\n";
+	else
+		cout << "The word " << userWord << " is not in the list.\n";
 }
 
 void WordMaster::GuessRandomScrambledWord()

@@ -28,6 +28,10 @@ int main()
 	VerifyWordListExists(wordListName);
 	wordMaster.ReadAndStoreWordList(wordListName);
 
+	cout << endl << endl;
+
+	wordMaster.CheckWordInWordList();
+
 
 
 	//Ask for wordlist
