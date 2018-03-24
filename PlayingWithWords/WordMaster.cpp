@@ -3,18 +3,55 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 
 using namespace std;
+
+int WordMaster::CountTotalWordsInFile(std::string filename)
+{
+	int total = 0;
+	string line;
+	ifstream file(filename);
+
+	while (getline(file, line))
+		total++;
+	file.close();
+
+	return total;
+}
 
 void WordMaster::ReadAndStoreWordList(std::string filename)
 {
 	ifstream wordListFile(filename);
 	string line;
+	wordCount = CountTotalWordsInFile(filename);
+	int currentCount = 0;
 
+	cout << "    ";
 	while (getline(wordListFile, line))
 	{
 		wordList.push_back(line);
-	}	
+		currentCount++	;
+
+		/*int percentage = currentCount * 100 / wordCount;
+
+		if (percentage < 10) //one digit only
+		{
+			cout << "\b\b";
+			cout << percentage << "%";
+		}
+		else if (percentage < 100)
+		{
+			cout << "\b\b\b";
+			cout << percentage << "%";
+		}
+		else
+		{
+			cout << "\b\b\b\b";
+			cout << percentage << "%";
+		}*/
+	}
+
 	wordListFile.close();
 	return;
 }
@@ -25,7 +62,7 @@ void WordMaster::CheckWordInWordList()
 	cout << "Word to search ? ";
 	cin >> userWord;
 
-	for (char letter : userWord)
+	for (auto letter : userWord)
 		letter = toupper(letter);
 
 	///////////////////
@@ -81,3 +118,5 @@ void WordMaster::AskToBuildValidWordWithNLetters()
 void WordMaster::WildcardMatchingWords()
 {
 }
+
+

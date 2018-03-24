@@ -26,7 +26,10 @@ int main()
 	cout << "What is the name of the wordlist you want to read? ";
 	cin >> wordListName;
 	VerifyWordListExists(wordListName);
+
+	cout << "Opening file ";
 	wordMaster.ReadAndStoreWordList(wordListName);
+	cout << endl;
 
 	cout << endl << endl;
 

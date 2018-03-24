@@ -15,5 +15,8 @@ public:
 
 private:
 	std::vector<std::string> wordList;
+	int CountTotalWordsInFile(std::string file);
+
+	int wordCount;
 
 };
