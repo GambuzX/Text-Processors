@@ -29,8 +29,6 @@ int main()
 
 	cout << "Opening file ";
 	wordMaster.ReadAndStoreWordList(wordListName);
-	cout << endl;
-
 	cout << endl << endl;
 
 	wordMaster.CheckWordInWordList();

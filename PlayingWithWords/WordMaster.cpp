@@ -3,7 +3,6 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
-#include <iomanip>
 
 using namespace std;
 
@@ -24,7 +23,7 @@ void WordMaster::ReadAndStoreWordList(std::string filename)
 {
 	ifstream wordListFile(filename);
 	string line;
-	wordCount = CountTotalWordsInFile(filename);
+	wordCount = CountTotalWordsInFile(filename); //Stores the number of the words in the file in a variable to be used by all the other functions
 	int currentCount = 0;
 	int nextOutput = 25;
 
@@ -36,7 +35,7 @@ void WordMaster::ReadAndStoreWordList(std::string filename)
 
 		int percentage = currentCount * 100 / wordCount;
 
-		if (percentage == 25 && nextOutput == 25) //one digit only
+		if (percentage == 25 && nextOutput == 25)
 		{
 			cout << "\b\b";
 			cout << "25%";
@@ -70,8 +69,8 @@ void WordMaster::CheckWordInWordList()
 	cout << "Word to search ? ";
 	cin >> userWord;
 
-	for (auto letter : userWord)
-		letter = toupper(letter);
+	for (int i = 0; i < userWord.length(); i++)
+		userWord.at(i) = toupper(userWord.at(i));
 
 	///////////////////
 	// Binary Search //
@@ -79,7 +78,7 @@ void WordMaster::CheckWordInWordList()
 
 	int bottom, middle, top; 
 	bottom = 0;
-	top = wordList.size() - 1;
+	top = wordCount - 1;
 	bool found = false;
 
 	while (top > bottom && !found) {
