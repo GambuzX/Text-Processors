@@ -26,30 +26,38 @@ void WordMaster::ReadAndStoreWordList(std::string filename)
 	string line;
 	wordCount = CountTotalWordsInFile(filename);
 	int currentCount = 0;
+	int nextOutput = 25;
 
-	cout << "    ";
+	cout << "0%";
 	while (getline(wordListFile, line))
 	{
 		wordList.push_back(line);
 		currentCount++	;
 
-		/*int percentage = currentCount * 100 / wordCount;
+		int percentage = currentCount * 100 / wordCount;
 
-		if (percentage < 10) //one digit only
+		if (percentage == 25 && nextOutput == 25) //one digit only
 		{
 			cout << "\b\b";
-			cout << percentage << "%";
+			cout << "25%";
+			nextOutput = 50;
 		}
-		else if (percentage < 100)
+		else if (percentage == 50 && nextOutput == 50)
 		{
 			cout << "\b\b\b";
-			cout << percentage << "%";
+			cout << "50%";
+			nextOutput = 75;
 		}
-		else
-		{
-			cout << "\b\b\b\b";
-			cout << percentage << "%";
-		}*/
+		else if (percentage == 75 && nextOutput == 75)
+		{			
+			cout << "\b\b\b";
+			cout << "75%";
+			nextOutput = 100;
+		}
+		else if (percentage == 100 && nextOutput == 100) {
+			cout << "\b\b\b";
+			cout << "100%\n";
+		}
 	}
 
 	wordListFile.close();
