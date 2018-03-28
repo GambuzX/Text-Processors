@@ -20,6 +20,7 @@ private:
 	int wordCount;
 
 	int CountTotalWordsInFile(std::string file);
+	void StringToUpper(std::string&);
 
 	//Word scrambler methods
 	void RandomScrambleIntro();

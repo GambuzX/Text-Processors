@@ -8,7 +8,17 @@
 using namespace std;
 
 //============================================================================================================================================
-//Reads the file containing the word list and stores the words in a vector
+// Converts a word to uppercase
+
+void WordMaster::StringToUpper(string & word)
+{
+	for (int i = 0; i < word.length(); i++)
+		word.at(i) = toupper(word.at(i));
+	return;
+}
+
+//============================================================================================================================================
+// Counts the number of words in the file and stores it in a variable
 
 int WordMaster::CountTotalWordsInFile(std::string filename)
 {
@@ -22,6 +32,9 @@ int WordMaster::CountTotalWordsInFile(std::string filename)
 
 	return total;
 }
+
+//============================================================================================================================================
+//Reads the file containing the word list and stores the words in a vector
 
 void WordMaster::ReadAndStoreWordList(std::string filename)
 {
@@ -76,8 +89,7 @@ void WordMaster::CheckWordInWordList()
 	cout << "Word to search ? ";
 	cin >> userWord;
 
-	for (int i = 0; i < userWord.length(); i++)
-		userWord.at(i) = toupper(userWord.at(i));
+	StringToUpper(userWord);
 
 	///////////////////
 	// Binary Search //
@@ -122,13 +134,52 @@ void WordMaster::CheckWordInWordList()
 
 void WordMaster::GuessRandomScrambledWord()
 {
+	const int NUMBER_OF_GUESSES = 3;
 	srand(time(NULL));
 	int randomNumber = rand() % wordCount; //from 0 up to wordCount-1
 	string randomWord = wordList.at(randomNumber);
-
 	RandomScrambleIntro();
 	string scrambledWord = ScrambleLetters(randomWord);
-	cout << "The scrambled word is " << randomWord;
+	cout << "The scrambled word is " << scrambledWord << ".\n";
+	cout << "Can you guess what the original word was? \n\n";
+
+	int currentGuess = 1;
+	bool correctGuess = false;
+	while (currentGuess <= NUMBER_OF_GUESSES && !correctGuess)
+	{
+		string guess;
+		cout << "Guess " << currentGuess << "? ";
+		cin >> guess;
+		StringToUpper(guess);
+
+		if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(10000, '\n');
+			continue;
+		}
+
+		if (guess == randomWord)
+		{
+			correctGuess = true;
+		}
+		else
+		{
+			currentGuess++;
+		}
+	}
+
+	cout << endl;
+	if (correctGuess)
+	{
+		cout << "Good job! You guessed the word!\n";
+	}
+	else
+	{
+		cout << "Too bad... None of your guesses were correct.\n";
+	}
+
+	return;
 }
 
 void WordMaster::RandomScrambleIntro()
@@ -138,7 +189,7 @@ void WordMaster::RandomScrambleIntro()
 	cout << " / \\/// _` | '_ \\ / _` |/ _ \\| '_ ` _ \\  \\ \\ / __| '__/ _` | '_ ` _ \\| '_ \\| |/ _ \\ \n";
 	cout << "/ _  \\ (_| | | | | (_| | (_) | | | | | | _\\ \\ (__| | | (_| | | | | | | |_) | |  __/\n";
 	cout << "\\/ \\_/\\__,_|_| |_|\\__,_|\\___/|_| |_| |_| \\__/\\___|_|  \\__,_|_| |_| |_|_.__/|_|\\___|\n";
-	cout << "___________________________________________________________________________________\n";
+	cout << "___________________________________________________________________________________\n\n";
 	return;
 }
 
@@ -187,7 +238,7 @@ string WordMaster::ScrambleLetters(string originalWord)
 			}
 		}
 	}
-	return;
+	return scrambledWord;
 }
 
 bool WordMaster::WasCharUsed(int index, vector<int> usedIndexes) const
