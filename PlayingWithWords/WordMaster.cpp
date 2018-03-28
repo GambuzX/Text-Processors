@@ -20,7 +20,7 @@ void WordMaster::StringToUpper(string & word)
 //============================================================================================================================================
 // Counts the number of words in the file and stores it in a variable
 
-int WordMaster::CountTotalWordsInFile(std::string filename)
+int WordMaster::CountTotalWordsInFile(std::string filename) const
 {
 	int total = 0;
 	string line;
@@ -138,6 +138,7 @@ void WordMaster::GuessRandomScrambledWord()
 	srand(time(NULL));
 	int randomNumber = rand() % wordCount; //from 0 up to wordCount-1
 	string randomWord = wordList.at(randomNumber);
+
 	RandomScrambleIntro();
 	string scrambledWord = ScrambleLetters(randomWord);
 	cout << "The scrambled word is " << scrambledWord << ".\n";

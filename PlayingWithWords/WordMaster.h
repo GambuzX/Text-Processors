@@ -19,7 +19,7 @@ private:
 	std::vector<std::string> wordList;
 	int wordCount;
 
-	int CountTotalWordsInFile(std::string file);
+	int CountTotalWordsInFile(std::string file) const;
 	void StringToUpper(std::string&);
 
 	//Word scrambler methods
