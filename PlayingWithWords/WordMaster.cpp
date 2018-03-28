@@ -126,11 +126,19 @@ void WordMaster::GuessRandomScrambledWord()
 	int randomNumber = rand() % wordCount; //from 0 up to wordCount-1
 	string randomWord = wordList.at(randomNumber);
 
-	cout << randomWord << endl;
-
+	RandomScrambleIntro();
 	ScrambleLetters(randomWord);
+}
 
-	cout << randomWord << endl;
+void WordMaster::RandomScrambleIntro()
+{
+	cout << "   __                 _                   __                          _     _      \n";
+	cout << "  /__\\ __ _ _ __   __| | ___  _ __ ___   / _\\ ___ _ __ __ _ _ __ ___ | |__ | | ___ \n";
+	cout << " / \\/// _` | '_ \\ / _` |/ _ \\| '_ ` _ \\  \\ \\ / __| '__/ _` | '_ ` _ \\| '_ \\| |/ _ \\ \n";
+	cout << "/ _  \\ (_| | | | | (_| | (_) | | | | | | _\\ \\ (__| | | (_| | | | | | | |_) | |  __/\n";
+	cout << "\\/ \\_/\\__,_|_| |_|\\__,_|\\___/|_| |_| |_| \\__/\\___|_|  \\__,_|_| |_| |_|_.__/|_|\\___|\n";
+	cout << "___________________________________________________________________________________\n";
+	return;
 }
 
 void WordMaster::ScrambleLetters(string &originalWord)
