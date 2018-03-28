@@ -127,7 +127,8 @@ void WordMaster::GuessRandomScrambledWord()
 	string randomWord = wordList.at(randomNumber);
 
 	RandomScrambleIntro();
-	ScrambleLetters(randomWord);
+	string scrambledWord = ScrambleLetters(randomWord);
+	cout << "The scrambled word is " << randomWord;
 }
 
 void WordMaster::RandomScrambleIntro()
@@ -141,9 +142,10 @@ void WordMaster::RandomScrambleIntro()
 	return;
 }
 
-void WordMaster::ScrambleLetters(string &originalWord)
+string WordMaster::ScrambleLetters(string originalWord)
 {
 	unsigned length = originalWord.length();
+	string scrambledWord = originalWord;
 	vector<char> availableChars;
 	vector<int> usedIndexes;
 	srand(time(NULL));
@@ -159,7 +161,7 @@ void WordMaster::ScrambleLetters(string &originalWord)
 		char randomChar = availableChars.at(randomNumber);
 		if (!WasCharUsed(randomNumber, usedIndexes)) //Checks if the random char was already used
 		{
-			originalWord.at(i) = randomChar;
+			scrambledWord.at(i) = randomChar;
 			usedIndexes.push_back(randomNumber); //adds the char to the usedChars
 		}
 		else //if char was already used
@@ -171,7 +173,7 @@ void WordMaster::ScrambleLetters(string &originalWord)
 				randomChar = availableChars.at(randomNumber);
 				if (!WasCharUsed(randomNumber, usedIndexes))
 				{
-					originalWord.at(i) = randomChar;
+					scrambledWord.at(i) = randomChar;
 					usedIndexes.push_back(randomNumber);
 					foundChar = true;
 				}
