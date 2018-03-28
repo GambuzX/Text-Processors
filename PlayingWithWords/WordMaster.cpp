@@ -126,14 +126,66 @@ void WordMaster::GuessRandomScrambledWord()
 	int randomNumber = rand() % wordCount; //from 0 up to wordCount-1
 	string randomWord = wordList.at(randomNumber);
 
+	cout << randomWord << endl;
 
+	ScrambleLetters(randomWord);
 
+	cout << randomWord << endl;
 }
 
-void ScrambleLetters(string& originalWord)
+void WordMaster::ScrambleLetters(string &originalWord)
 {
+	unsigned length = originalWord.length();
+	vector<char> availableChars;
+	vector<int> usedIndexes;
+	srand(time(NULL));
 
+	//Fills the chars vector
+	for (unsigned i = 0; i < length; i++)
+		availableChars.push_back(originalWord.at(i));
+
+	//Scrambles the word
+	for (unsigned i = 0; i < length; i++)
+	{
+		int randomNumber = rand() % length;
+		char randomChar = availableChars.at(randomNumber);
+		if (!WasCharUsed(randomNumber, usedIndexes)) //Checks if the random char was already used
+		{
+			originalWord.at(i) = randomChar;
+			usedIndexes.push_back(randomNumber); //adds the char to the usedChars
+		}
+		else //if char was already used
+		{
+			bool foundChar = false;
+			randomNumber = rand() % length;
+			while (!foundChar)
+			{
+				randomChar = availableChars.at(randomNumber);
+				if (!WasCharUsed(randomNumber, usedIndexes))
+				{
+					originalWord.at(i) = randomChar;
+					usedIndexes.push_back(randomNumber);
+					foundChar = true;
+				}
+				else //increments the random number
+				{
+					if (randomNumber < length - 1)
+						randomNumber++;
+					else
+						randomNumber = 0;
+				}
+			}
+		}
+	}
 	return;
+}
+
+bool WordMaster::WasCharUsed(int index, vector<int> usedIndexes) const
+{
+	for (unsigned i = 0; i < usedIndexes.size(); i++)
+		if (usedIndexes.at(i) == index)
+			return true;
+	return false;
 }
 
 //============================================================================================================================================

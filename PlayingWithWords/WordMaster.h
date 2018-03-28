@@ -23,6 +23,8 @@ private:
 
 	//Word scrambler methods
 	void ScrambleLetters(std::string&);
+	bool WasCharUsed(int, std::vector<int>) const;
+
 
 
 	

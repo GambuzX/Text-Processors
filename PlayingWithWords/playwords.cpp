@@ -31,7 +31,7 @@ int main()
 	wordMaster.ReadAndStoreWordList(wordListName);
 	cout << endl << endl;
 
-	wordMaster.CheckWordInWordList();
+	wordMaster.GuessRandomScrambledWord();
 
 
 
