@@ -3,8 +3,12 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <time.h>
 
 using namespace std;
+
+//============================================================================================================================================
+//Reads the file containing the word list and stores the words in a vector
 
 int WordMaster::CountTotalWordsInFile(std::string filename)
 {
@@ -63,6 +67,9 @@ void WordMaster::ReadAndStoreWordList(std::string filename)
 	return;
 }
 
+//============================================================================================================================================
+//Checking if user given word is in the word List or not
+
 void WordMaster::CheckWordInWordList()
 {
 	string userWord;
@@ -110,17 +117,42 @@ void WordMaster::CheckWordInWordList()
 		cout << "The word " << userWord << " is not in the list.\n";
 }
 
+//============================================================================================================================================
+//Selects random word, scrambles it and asks user to guess it. Has more than one try.
+
 void WordMaster::GuessRandomScrambledWord()
 {
+	srand(time(NULL));
+	int randomNumber = rand() % wordCount; //from 0 up to wordCount-1
+	string randomWord = wordList.at(randomNumber);
+
+
+
 }
+
+void ScrambleLetters(string& originalWord)
+{
+
+	return;
+}
+
+//============================================================================================================================================
+//Ask the user a set of N letters and show all the words present in the dictionary that can be built using the set of the given letters 
+//(Improvement: or any subset of them)
 
 void WordMaster::ShowWordsUsingNLetters()
 {
 }
 
+//============================================================================================================================================
+//Randomly choose a set of N letters and ask the user to build a valid word, then verify if the word belongs to the word list or not.
+
 void WordMaster::AskToBuildValidWordWithNLetters()
 {
 }
+
+//============================================================================================================================================
+//Read a string containing one or more wildcard characters ('*' or '?') and show all the words in the dictionary that match the given string
 
 void WordMaster::WildcardMatchingWords()
 {

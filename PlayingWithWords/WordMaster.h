@@ -14,9 +14,17 @@ public:
 	void WildcardMatchingWords();
 
 private:
+
+	//General use
 	std::vector<std::string> wordList;
+	int wordCount;
+
 	int CountTotalWordsInFile(std::string file);
 
-	int wordCount;
+	//Word scrambler methods
+	void ScrambleLetters(std::string&);
+
+
+	
 
 };
