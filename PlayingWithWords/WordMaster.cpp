@@ -263,17 +263,17 @@ bool WordMaster::WasCharUsed(int index, vector<int> usedIndexes) const
 void WordMaster::ShowWordsUsingNLetters()
 {
 	//TODO add Intro
-
 	vector<char> letters;
 	do
 	{
 		letters.clear(); //reset vector
-		AskForLetters(letters); //fill vector
-		for (int i = 0; i < letters.size(); i++) //convert to uppercase
-			letters.at(i) = toupper(letters.at(i));		
+		AskForLetters(letters); //fill vector	
 	} while (!validLettersInput(letters));
 	
 }
+
+//============================================================================================================================================
+// Asks for the letters to be used and fills the letters vector with it
 
 void WordMaster::AskForLetters(vector<char>& letters)
 {
@@ -302,11 +302,14 @@ void WordMaster::AskForLetters(vector<char>& letters)
 		}
 		else
 		{
-			letters.push_back(letter);
+			letters.push_back(toupper(letter)); //Adds the letter in uppercase
 			lettersAdded++;
 		}
 	}
 }
+
+//============================================================================================================================================
+// Verifies if all the letters given by the user are alphabetic
 
 bool WordMaster::validLettersInput(vector<char> letters) const
 {
