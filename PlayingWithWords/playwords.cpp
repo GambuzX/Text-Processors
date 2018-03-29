@@ -24,7 +24,7 @@ int main()
 	wordMaster.ReadAndStoreWordList(wordListName);
 	cout << endl << endl;
 
-	wordMaster.ShowWordsUsingNLetters();
+	wordMaster.AskToBuildValidWordWithNLetters();
 	return 0;
 }
 

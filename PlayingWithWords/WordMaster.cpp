@@ -364,6 +364,10 @@ void WordMaster::AskToBuildValidWordWithNLetters()
 {
 	//TODO add intro
 
+	map<char, int> charFrequency = BuildCharFrequencyMap();
+
+	for (char letter = 'A'; letter <= 'Z'; letter++)
+		cout << letter << ": " << charFrequency[letter] << endl;
 	//Build major set of letters
 
 	//Ask for the N of letters
@@ -373,6 +377,22 @@ void WordMaster::AskToBuildValidWordWithNLetters()
 	//Ask to build word
 
 	//Check if word is in dictionary
+}
+
+map<char, int> WordMaster::BuildCharFrequencyMap()
+{
+	map<char, int> charFrequency;
+	for (char letter = 'A'; letter <= 'Z'; letter++) //initializes the map with 0 for each letter
+		charFrequency[letter] = 0;
+	for (int i = 0; i < wordCount; i++) // for each word
+	{
+		string currentWord = wordList.at(i);
+		for (int j = 0; j < currentWord.length(); j++) //for each letter in the word
+		{
+			charFrequency[currentWord.at(j)] ++; //increments the frequence of the letter
+		}
+	}
+	return charFrequency;
 }
 
 //=========================//

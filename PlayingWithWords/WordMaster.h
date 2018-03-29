@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
 class WordMaster
 {
@@ -33,7 +34,7 @@ private:
 	bool WordOnlyContainsNLetters(std::string, std::vector<char>) const;
 
 	//Word builder
-
+	std::map<char, int> BuildCharFrequencyMap();
 	
 
 };
