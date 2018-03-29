@@ -8,9 +8,9 @@
 
 using namespace std;
 
-//=============//
-// GENERAL USE //
-//=============//
+//==========================================================================================================================================//
+//                                                              GENERAL USE                                                                 //
+//==========================================================================================================================================//
 
 // Converts a word to uppercase
 void WordMaster::StringToUpper(string & word)
@@ -36,9 +36,9 @@ int WordMaster::CountTotalWordsInFile(std::string filename) const
 	return total;
 }
 
-//======================//
-// INITIALIZE WORD LIST //
-//======================//
+//==========================================================================================================================================//
+//                                                          INITIALIZE WORD LIST                                                            //
+//==========================================================================================================================================//
 
 //Reads the file containing the word list and stores the words in a vector
 void WordMaster::ReadAndStoreWordList(std::string filename)
@@ -85,9 +85,9 @@ void WordMaster::ReadAndStoreWordList(std::string filename)
 	return;
 }
 
-//=========================//
-// CHECK WORD IN WORD LIST //
-//=========================//
+//==========================================================================================================================================//
+//                                                           CHECK WORD IN WORD LIST                                                        //
+//==========================================================================================================================================//
 
 void WordMaster::CheckWordInWordList()
 {
@@ -135,9 +135,9 @@ void WordMaster::CheckWordInWordList()
 		cout << "The word " << userWord << " is not in the list.\n";
 }
 
-//=================//
-// RANDOM SCRAMBLE //
-//=================//
+//==========================================================================================================================================//
+//                                                              RANDOM SCRAMBLE                                                             //
+//==========================================================================================================================================//
 
 //Selects random word, scrambles it and asks user to guess it. Has more than one try.
 void WordMaster::GuessRandomScrambledWord()
@@ -254,9 +254,9 @@ bool WordMaster::WasCharUsed(int index, vector<int> usedIndexes) const
 	return false;
 }
 
-//==============================//
-// WORDS WITH SPECIFIED LETTERS //
-//==============================//
+//==========================================================================================================================================//
+//                                                          WORDS WITH SPECIFIED LETTERS                                                    //
+//==========================================================================================================================================//
 
 //Ask the user a set of N letters and show all the words present in the dictionary that can be built using the set of the given letters 
 void WordMaster::ShowWordsUsingNLetters()
@@ -353,9 +353,9 @@ bool WordMaster::WordOnlyContainsNLetters(string word, vector<char> letters) con
 	return true;
 }
 
-//==============//
-// WORD BUILDER //
-//==============//
+//==========================================================================================================================================//
+//                                                                WORD BUILDER                                                              //
+//==========================================================================================================================================//
 
 //Randomly choose a set of N letters and ask the user to build a valid word, then verify if the word belongs to the word list or not.
 //The set of letters must be chosen by a larger set, built according to the number of each letter in the word list
@@ -388,6 +388,9 @@ void WordMaster::AskToBuildValidWordWithNLetters()
 	//Check if word is in dictionary
 }
 
+//============================================================================================================================================
+// Builds a map of the frequency of each char in the word list
+
 void WordMaster::BuildCharFrequencyMap()
 {
 	for (char letter = 'A'; letter <= 'Z'; letter++) //initializes the map with 0 for each letter
@@ -405,6 +408,9 @@ void WordMaster::BuildCharFrequencyMap()
 	return;
 }
 
+//============================================================================================================================================
+// Builds a CUMULATIVE map of the frequency of each char in the word list
+
 map<char, int> WordMaster::BuildCumulativeCharFrequencyMap()
 {
 	map<char, int> cumulativeMap;
@@ -416,6 +422,10 @@ map<char, int> WordMaster::BuildCumulativeCharFrequencyMap()
 	}
 	return cumulativeMap;
 }
+
+//============================================================================================================================================
+// Calculates the major set of letters from the word list and returns a vector with the specified number of letters. 
+// Letters chosen based on their frequency in the word list.
 
 vector<char> WordMaster::SelectNLettersFromMajorSet(int nLetters)
 {
@@ -446,9 +456,9 @@ vector<char> WordMaster::SelectNLettersFromMajorSet(int nLetters)
 	return letters;
 }
 
-//=========================//
-// WILDCARD MATCHING WORDS //
-//=========================//
+//==========================================================================================================================================//
+//                                                       WILDCARD MATCHING WORDS                                                            //
+//==========================================================================================================================================//
 
 //Read a string containing one or more wildcard characters ('*' or '?') and show all the words in the dictionary that match the given string
 
