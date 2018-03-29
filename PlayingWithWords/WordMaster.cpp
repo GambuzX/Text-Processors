@@ -365,21 +365,21 @@ void WordMaster::AskToBuildValidWordWithNLetters()
 	//TODO add intro
 
 	//TODO Calculate only once. Verify if it is initialized or not
-	BuildCharFrequencyMap(); 	
+	BuildCharFrequencyMap();
 
 	//Ask for the number of letters
 	int nLetters;
 	do
 	{
-		cout << "Number of letters? ";
-		cin >> nLetters;
 		if (cin.fail())
 		{
 			cin.clear();
 			cin.ignore(1000, '\n');
 		}
-	} while (!cin.fail());
-
+		cout << "Number of letters? ";
+		cin >> nLetters;
+	} while (cin.fail());
+	
 	//Select set of n letters from the major set
 	vector<char> letters = SelectNLettersFromMajorSet(nLetters);
 
@@ -420,15 +420,23 @@ map<char, int> WordMaster::BuildCumulativeCharFrequencyMap()
 vector<char> WordMaster::SelectNLettersFromMajorSet(int nLetters)
 {
 	vector<char> letters;
+	const int SCALE_FACTOR = 100;
 
 	map<char, int> cumulativeMap = BuildCumulativeCharFrequencyMap();
+	map<char, double> scaleReducedCumulativeMap;
+
+	for (char letter = 'A'; letter <= 'Z'; letter++) //Need to reduce the number of ocurrences because of the limitations of rand()
+	{
+		scaleReducedCumulativeMap[letter] = (double) cumulativeMap[letter] / SCALE_FACTOR;
+	}
+
 	srand(time(NULL));
 	for (int i = 1; i <= nLetters; i++)
 	{
-		int randomNumber = rand() % cumulativeMap['Z'] + 1; //random number modulus the total number of chars
+		int randomNumber = rand() % ((int)scaleReducedCumulativeMap['Z']); //random number modulus the total number of chars
 		for (char letter = 'A'; letter <= 'Z'; letter++)
 		{
-			if (randomNumber <= cumulativeMap[letter])
+			if (randomNumber <= scaleReducedCumulativeMap[letter])
 			{
 				letters.push_back(letter);
 				break;
