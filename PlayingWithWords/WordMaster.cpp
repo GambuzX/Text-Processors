@@ -417,17 +417,24 @@ map<char, int> WordMaster::BuildCumulativeCharFrequencyMap()
 	return cumulativeMap;
 }
 
-vector<char> WordMaster::SelectNLettersFromMajorSet(int nLetters) const
+vector<char> WordMaster::SelectNLettersFromMajorSet(int nLetters)
 {
 	vector<char> letters;
 
-	//Calculating the intervals associated with each letter
+	map<char, int> cumulativeMap = BuildCumulativeCharFrequencyMap();
 	srand(time(NULL));
 	for (int i = 1; i <= nLetters; i++)
 	{
-		int randomNumber = rand() % totalChars + 1;
+		int randomNumber = rand() % cumulativeMap['Z'] + 1; //random number modulus the total number of chars
+		for (char letter = 'A'; letter <= 'Z'; letter++)
+		{
+			if (randomNumber <= cumulativeMap[letter])
+			{
+				letters.push_back(letter);
+				break;
+			}
+		}
 	}
-
 	return letters;
 }
 
