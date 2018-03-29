@@ -32,7 +32,7 @@ private:
 	void AskForLetters(std::vector<char>&);
 	bool WordOnlyContainsNLetters(std::string, std::vector<char>) const;
 
-
+	//Word builder
 
 	
 

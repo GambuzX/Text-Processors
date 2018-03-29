@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <time.h>
+#include <map>
 
 using namespace std;
 
@@ -357,9 +358,21 @@ bool WordMaster::WordOnlyContainsNLetters(string word, vector<char> letters) con
 //==============//
 
 //Randomly choose a set of N letters and ask the user to build a valid word, then verify if the word belongs to the word list or not.
+//The set of letters must be chosen by a larger set, built according to the number of each letter in the word list
 
 void WordMaster::AskToBuildValidWordWithNLetters()
 {
+	//TODO add intro
+
+	//Build major set of letters
+
+	//Ask for the N of letters
+
+	//Select set of n letters from the major set
+
+	//Ask to build word
+
+	//Check if word is in dictionary
 }
 
 //=========================//
