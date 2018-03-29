@@ -14,7 +14,7 @@ WordMaster wordMaster;
 
 int main()
 {
-	PlayingWithWordsIntro();
+	/*PlayingWithWordsIntro();
 	string wordListName;
 	cout << "What is the name of the wordlist you want to read? ";
 	cin >> wordListName;
@@ -22,9 +22,9 @@ int main()
 
 	cout << "Opening file ";
 	wordMaster.ReadAndStoreWordList(wordListName);
-	cout << endl << endl;
+	cout << endl << endl;*/
 
-	wordMaster.GuessRandomScrambledWord();
+	wordMaster.ShowWordsUsingNLetters();
 	return 0;
 }
 

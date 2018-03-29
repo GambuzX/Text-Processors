@@ -27,6 +27,10 @@ private:
 	std::string ScrambleLetters(std::string);
 	bool WasCharUsed(int, std::vector<int>) const;
 
+	//Words with specified letters
+	bool validLettersInput(std::vector<char>) const;
+	void AskForLetters(std::vector<char>&);
+
 
 
 	

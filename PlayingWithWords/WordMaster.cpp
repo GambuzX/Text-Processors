@@ -262,6 +262,63 @@ bool WordMaster::WasCharUsed(int index, vector<int> usedIndexes) const
 
 void WordMaster::ShowWordsUsingNLetters()
 {
+	//TODO add Intro
+
+	vector<char> letters;
+	do
+	{
+		letters.clear(); //reset vector
+		AskForLetters(letters); //fill vector
+		for (int i = 0; i < letters.size(); i++) //convert to uppercase
+			letters.at(i) = toupper(letters.at(i));		
+	} while (!validLettersInput(letters));
+	
+}
+
+void WordMaster::AskForLetters(vector<char>& letters)
+{
+	int nLetters;
+	do
+	{
+		if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(1000, '\n');
+		}
+		cout << "Number of letters? ";
+		cin >> nLetters;
+	} while (cin.fail());
+
+	int lettersAdded = 0;
+	cout << "Letters to include? ";
+	while (lettersAdded < nLetters)
+	{
+		char letter;
+		cin >> letter;
+		if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(1000, '\n');
+		}
+		else
+		{
+			letters.push_back(letter);
+			lettersAdded++;
+		}
+	}
+}
+
+bool WordMaster::validLettersInput(vector<char> letters) const
+{
+	for (int i = 0; i < letters.size(); i++)
+	{
+		if (!isupper(letters.at(i)))
+		{
+			cout << "Please enter only alphabetical characters.\n\n";
+			return false;
+		}
+	}
+	return true;
 }
 
 //==============//
