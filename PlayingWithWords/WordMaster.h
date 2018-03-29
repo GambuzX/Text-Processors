@@ -30,6 +30,7 @@ private:
 	//Words with specified letters
 	bool validLettersInput(std::vector<char>) const;
 	void AskForLetters(std::vector<char>&);
+	bool WordOnlyContainsNLetters(std::string, std::vector<char>) const;
 
 
 

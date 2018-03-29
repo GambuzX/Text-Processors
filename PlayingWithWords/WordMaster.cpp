@@ -269,7 +269,17 @@ void WordMaster::ShowWordsUsingNLetters()
 		letters.clear(); //reset vector
 		AskForLetters(letters); //fill vector	
 	} while (!validLettersInput(letters));
-	
+
+	cout << "Words Found: \n";
+	for (int i = 0; i < wordCount; i++)
+	{
+		string currentWord = wordList.at(i);
+		if (WordOnlyContainsNLetters(currentWord, letters))
+		{
+			cout << currentWord << endl;
+		}
+	}
+	return;
 }
 
 //============================================================================================================================================
@@ -320,6 +330,23 @@ bool WordMaster::validLettersInput(vector<char> letters) const
 			cout << "Please enter only alphabetical characters.\n\n";
 			return false;
 		}
+	}
+	return true;
+}
+
+bool WordMaster::WordOnlyContainsNLetters(string word, vector<char> letters) const
+{
+	for (int i = 0; i < word.length(); i++) //loop for each letter in the word
+	{
+		char currentLetter = word.at(i);
+		bool letterFound = false;
+		for (int j = 0; j < letters.size(); i++) //loop for each char in the vector and compare it against the current letter
+		{
+			if (currentLetter == letters.at(i))
+				letterFound = true;
+		}
+		if (!letterFound)
+			return false;
 	}
 	return true;
 }
