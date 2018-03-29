@@ -24,6 +24,9 @@ private:
 	int CountTotalWordsInFile(std::string file) const;
 	void StringToUpper(std::string&);
 
+	//Word Finder
+	bool isWordInWordList(std::string);
+
 	//Word scrambler methods
 	void RandomScrambleIntro();
 	std::string ScrambleLetters(std::string);

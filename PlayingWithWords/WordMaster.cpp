@@ -91,48 +91,51 @@ void WordMaster::ReadAndStoreWordList(std::string filename)
 
 void WordMaster::CheckWordInWordList()
 {
+	//TODO add Intro
+
 	string userWord;
 	cout << "Word to search ? ";
 	cin >> userWord;
+	StringToUpper(userWord);	
 
-	StringToUpper(userWord);
+	if (isWordInWordList(userWord))
+		cout << "The word " << userWord << " is in the list.\n";
+	else
+		cout << "The word " << userWord << " is not in the list.\n";
+}
 
+bool WordMaster::isWordInWordList(std::string userWord)
+{
 	///////////////////
 	// Binary Search //
 	///////////////////
 
-	int bottom, middle, top; 
+	int bottom, middle, top;
 	bottom = 0;
 	top = wordCount - 1;
-	bool found = false;
 
-	while (top > bottom && !found) {
+	while (top > bottom)
+	{
 		middle = (top + bottom) / 2;
-		if (wordList.at(middle) == userWord) {
-			found = true;
-		}
-		else {
-			if (wordList.at(middle) < userWord) {
+		if (wordList.at(middle) == userWord)
+			return true;
+		else
+		{
+			if (wordList.at(middle) < userWord)
 				bottom = middle + 1;
-			}
-			else {
+			else
 				top = middle - 1;
-			}
 		}
 	}
 
 	if (wordList.at(bottom) == userWord)
-		found = true;
+		return true;
 	else if (wordList.at(top) == userWord)
-		found = true;
+		return true;
 	else if (wordList.at(middle) == userWord)
-		found = true;
-
+		return true;
 	
-	if (found)
-		cout << "The word " << userWord << " is in the list.\n";
-	else
-		cout << "The word " << userWord << " is not in the list.\n";
+	return false;
 }
 
 //==========================================================================================================================================//
@@ -384,8 +387,14 @@ void WordMaster::AskToBuildValidWordWithNLetters()
 	vector<char> letters = SelectNLettersFromMajorSet(nLetters);
 
 	//Ask to build word
+	cout << "Can you build a word with these letters? ";
+	for (int i = 0; i < letters.size(); i++) cout << letters.at(i) << " ";
+	cout << endl;
+	string userWord;
+	cin >> userWord;
 
 	//Check if word is in dictionary
+
 }
 
 //============================================================================================================================================
