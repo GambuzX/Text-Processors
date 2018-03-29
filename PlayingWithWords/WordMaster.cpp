@@ -483,6 +483,9 @@ vector<char> WordMaster::SelectNLettersFromMajorSet(int nLetters)
 	return letters;
 }
 
+//============================================================================================================================================
+// Checks if the word contains all the letters specified in the vector
+
 bool WordMaster::WordContainsAllLetters(string userWord, vector<char> letters)
 {
 	for (int i = 0; i < letters.size(); i++) //for each letter in the vector
