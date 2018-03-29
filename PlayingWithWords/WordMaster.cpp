@@ -364,13 +364,21 @@ void WordMaster::AskToBuildValidWordWithNLetters()
 {
 	//TODO add intro
 
-	map<char, int> charFrequency = BuildCharFrequencyMap();
+	//TODO Calculate only once. Verify if it is initialized or not
+	BuildCharFrequencyMap(); 	
 
-	for (char letter = 'A'; letter <= 'Z'; letter++)
-		cout << letter << ": " << charFrequency[letter] << endl;
-	//Build major set of letters
-
-	//Ask for the N of letters
+	//Ask for the number of letters
+	do
+	{
+		int nLetters;
+		cout << "Number of letters? ";
+		cin >> nLetters;
+		if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(1000, '\n');
+		}
+	} while (!cin.fail());
 
 	//Select set of n letters from the major set
 
@@ -379,11 +387,12 @@ void WordMaster::AskToBuildValidWordWithNLetters()
 	//Check if word is in dictionary
 }
 
-map<char, int> WordMaster::BuildCharFrequencyMap()
+void WordMaster::BuildCharFrequencyMap()
 {
-	map<char, int> charFrequency;
 	for (char letter = 'A'; letter <= 'Z'; letter++) //initializes the map with 0 for each letter
 		charFrequency[letter] = 0;
+
+	cout << "Calculating the number of ocurrences of each letter ... \n\n";
 	for (int i = 0; i < wordCount; i++) // for each word
 	{
 		string currentWord = wordList.at(i);
@@ -392,7 +401,7 @@ map<char, int> WordMaster::BuildCharFrequencyMap()
 			charFrequency[currentWord.at(j)] ++; //increments the frequence of the letter
 		}
 	}
-	return charFrequency;
+	return;
 }
 
 //=========================//

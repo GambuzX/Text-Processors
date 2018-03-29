@@ -19,6 +19,7 @@ private:
 	//General use
 	std::vector<std::string> wordList;
 	int wordCount;
+	std::map<char, int> charFrequency;
 
 	int CountTotalWordsInFile(std::string file) const;
 	void StringToUpper(std::string&);
@@ -34,7 +35,7 @@ private:
 	bool WordOnlyContainsNLetters(std::string, std::vector<char>) const;
 
 	//Word builder
-	std::map<char, int> BuildCharFrequencyMap();
+	void BuildCharFrequencyMap();
 	
 
 };
