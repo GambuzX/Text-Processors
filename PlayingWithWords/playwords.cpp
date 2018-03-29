@@ -22,7 +22,7 @@ int main()
 
 	cout << "Opening file ";
 	wordMaster.ReadAndStoreWordList(wordListName);
-	cout << endl << endl;
+	cout << endl;
 
 	wordMaster.AskToBuildValidWordWithNLetters();
 	return 0;

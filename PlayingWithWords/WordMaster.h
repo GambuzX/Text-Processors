@@ -41,6 +41,7 @@ private:
 	void BuildCharFrequencyMap();
 	std::map<char, int> BuildCumulativeCharFrequencyMap();
 	std::vector<char> SelectNLettersFromMajorSet(int);
+	bool WordContainsAllLetters(std::string, std::vector<char>);
 	
 
 };

@@ -92,7 +92,6 @@ void WordMaster::ReadAndStoreWordList(std::string filename)
 void WordMaster::CheckWordInWordList()
 {
 	//TODO add Intro
-
 	string userWord;
 	cout << "Word to search ? ";
 	cin >> userWord;
@@ -387,14 +386,31 @@ void WordMaster::AskToBuildValidWordWithNLetters()
 	vector<char> letters = SelectNLettersFromMajorSet(nLetters);
 
 	//Ask to build word
-	cout << "Can you build a word with these letters? ";
+	cout << "Can you build a word with all of these letters (including repeating ones)? ";
 	for (int i = 0; i < letters.size(); i++) cout << letters.at(i) << " ";
 	cout << endl;
+
+	bool validWord = false;
 	string userWord;
-	cin >> userWord;
+	do
+	{
+		cin >> userWord;
+		StringToUpper(userWord);
+		if (WordContainsAllLetters(userWord, letters) && WordOnlyContainsNLetters(userWord, letters)) //Word is valid if it uses all the given letters
+			validWord = true;
+		else if (!WordOnlyContainsNLetters(userWord, letters))
+			cout << "No cheating! Enter a word using only the given letters.\n\n";
+		else if (!WordContainsAllLetters(userWord, letters))
+			cout << "No cheating! Enter a word using all of the given letters.\n\n";
+		else if (userWord.length() < letters.size())
+			cout << "No cheating! Enter a word using all the letters (including repeating ones).\n\n";
+	} while (!validWord);
 
 	//Check if word is in dictionary
-
+	if (isWordInWordList(userWord))
+		cout << "Good job! That word is in the word list!\n";
+	else
+		cout << "That word is not in the word list. Better luck next time...\n";
 }
 
 //============================================================================================================================================
@@ -463,6 +479,22 @@ vector<char> WordMaster::SelectNLettersFromMajorSet(int nLetters)
 		}
 	}
 	return letters;
+}
+
+bool WordMaster::WordContainsAllLetters(string userWord, vector<char> letters)
+{
+	for (int i = 0; i < letters.size(); i++) //for each letter in the vector
+	{
+		bool hasLetter = false;
+		for (int j = 0; j < userWord.length(); j++) //for each letter in the string
+		{
+			if (letters.at(i) == userWord.at(j))
+				hasLetter = true;
+		}
+		if (!hasLetter)
+			return false;
+	}
+	return true;
 }
 
 //==========================================================================================================================================//
