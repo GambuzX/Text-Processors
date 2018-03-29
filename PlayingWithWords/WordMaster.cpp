@@ -7,9 +7,11 @@
 
 using namespace std;
 
-//============================================================================================================================================
-// Converts a word to uppercase
+//=============//
+// GENERAL USE //
+//=============//
 
+// Converts a word to uppercase
 void WordMaster::StringToUpper(string & word)
 {
 	for (int i = 0; i < word.length(); i++)
@@ -33,9 +35,11 @@ int WordMaster::CountTotalWordsInFile(std::string filename) const
 	return total;
 }
 
-//============================================================================================================================================
-//Reads the file containing the word list and stores the words in a vector
+//======================//
+// INITIALIZE WORD LIST //
+//======================//
 
+//Reads the file containing the word list and stores the words in a vector
 void WordMaster::ReadAndStoreWordList(std::string filename)
 {
 	ifstream wordListFile(filename);
@@ -80,8 +84,9 @@ void WordMaster::ReadAndStoreWordList(std::string filename)
 	return;
 }
 
-//============================================================================================================================================
-//Checking if user given word is in the word List or not
+//=========================//
+// CHECK WORD IN WORD LIST //
+//=========================//
 
 void WordMaster::CheckWordInWordList()
 {
@@ -129,9 +134,11 @@ void WordMaster::CheckWordInWordList()
 		cout << "The word " << userWord << " is not in the list.\n";
 }
 
-//============================================================================================================================================
-//Selects random word, scrambles it and asks user to guess it. Has more than one try.
+//=================//
+// RANDOM SCRAMBLE //
+//=================//
 
+//Selects random word, scrambles it and asks user to guess it. Has more than one try.
 void WordMaster::GuessRandomScrambledWord()
 {
 	const int NUMBER_OF_GUESSES = 3;
@@ -161,27 +168,19 @@ void WordMaster::GuessRandomScrambledWord()
 		}
 
 		if (guess == randomWord)
-		{
 			correctGuess = true;
-		}
 		else
-		{
 			currentGuess++;
-		}
 	}
-
 	cout << endl;
 	if (correctGuess)
-	{
 		cout << "Good job! You guessed the word!\n";
-	}
 	else
-	{
 		cout << "Too bad... None of your guesses were correct.\n";
-	}
-
 	return;
 }
+
+//============================================================================================================================================
 
 void WordMaster::RandomScrambleIntro()
 {
@@ -193,6 +192,8 @@ void WordMaster::RandomScrambleIntro()
 	cout << "___________________________________________________________________________________\n\n";
 	return;
 }
+
+//============================================================================================================================================
 
 string WordMaster::ScrambleLetters(string originalWord)
 {
@@ -242,6 +243,8 @@ string WordMaster::ScrambleLetters(string originalWord)
 	return scrambledWord;
 }
 
+//============================================================================================================================================
+
 bool WordMaster::WasCharUsed(int index, vector<int> usedIndexes) const
 {
 	for (unsigned i = 0; i < usedIndexes.size(); i++)
@@ -250,7 +253,10 @@ bool WordMaster::WasCharUsed(int index, vector<int> usedIndexes) const
 	return false;
 }
 
-//============================================================================================================================================
+//==============================//
+// WORDS WITH SPECIFIED LETTERS //
+//==============================//
+
 //Ask the user a set of N letters and show all the words present in the dictionary that can be built using the set of the given letters 
 //(Improvement: or any subset of them)
 
@@ -258,14 +264,20 @@ void WordMaster::ShowWordsUsingNLetters()
 {
 }
 
-//============================================================================================================================================
+//==============//
+// WORD BUILDER //
+//==============//
+
 //Randomly choose a set of N letters and ask the user to build a valid word, then verify if the word belongs to the word list or not.
 
 void WordMaster::AskToBuildValidWordWithNLetters()
 {
 }
 
-//============================================================================================================================================
+//=========================//
+// WILDCARD MATCHING WORDS //
+//=========================//
+
 //Read a string containing one or more wildcard characters ('*' or '?') and show all the words in the dictionary that match the given string
 
 void WordMaster::WildcardMatchingWords()
