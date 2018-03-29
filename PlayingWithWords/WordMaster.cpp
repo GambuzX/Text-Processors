@@ -396,7 +396,7 @@ void WordMaster::AskToBuildValidWordWithNLetters()
 	{
 		cin >> userWord;
 		StringToUpper(userWord);
-		if (WordContainsAllLetters(userWord, letters) && WordOnlyContainsNLetters(userWord, letters)) //Word is valid if it uses all the given letters
+		if (WordContainsAllLetters(userWord, letters) && WordOnlyContainsNLetters(userWord, letters)) //Word is valid if it uses all the given letters and only those
 			validWord = true;
 		else if (!WordOnlyContainsNLetters(userWord, letters))
 			cout << "No cheating! Enter a word using only the given letters.\n\n";
@@ -405,6 +405,8 @@ void WordMaster::AskToBuildValidWordWithNLetters()
 		else if (userWord.length() < letters.size())
 			cout << "No cheating! Enter a word using all the letters (including repeating ones).\n\n";
 	} while (!validWord);
+
+	//TODO Given repetitive letters, check if that letter is used multiple times
 
 	//Check if word is in dictionary
 	if (isWordInWordList(userWord))
