@@ -36,6 +36,8 @@ private:
 
 	//Word builder
 	void BuildCharFrequencyMap();
+	std::map<char, int> BuildCumulativeCharFrequencyMap();
+	std::vector<char> SelectNLettersFromMajorSet(int) const;
 	
 
 };

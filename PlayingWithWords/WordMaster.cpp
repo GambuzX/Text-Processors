@@ -368,9 +368,9 @@ void WordMaster::AskToBuildValidWordWithNLetters()
 	BuildCharFrequencyMap(); 	
 
 	//Ask for the number of letters
+	int nLetters;
 	do
 	{
-		int nLetters;
 		cout << "Number of letters? ";
 		cin >> nLetters;
 		if (cin.fail())
@@ -381,6 +381,7 @@ void WordMaster::AskToBuildValidWordWithNLetters()
 	} while (!cin.fail());
 
 	//Select set of n letters from the major set
+	vector<char> letters = SelectNLettersFromMajorSet(nLetters);
 
 	//Ask to build word
 
@@ -402,6 +403,32 @@ void WordMaster::BuildCharFrequencyMap()
 		}
 	}
 	return;
+}
+
+map<char, int> WordMaster::BuildCumulativeCharFrequencyMap()
+{
+	map<char, int> cumulativeMap;
+	int total = 0;
+	for (char letter = 'A'; letter <= 'Z'; letter++)
+	{
+		total += charFrequency[letter];
+		cumulativeMap[letter] = total;
+	}
+	return cumulativeMap;
+}
+
+vector<char> WordMaster::SelectNLettersFromMajorSet(int nLetters) const
+{
+	vector<char> letters;
+
+	//Calculating the intervals associated with each letter
+	srand(time(NULL));
+	for (int i = 1; i <= nLetters; i++)
+	{
+		int randomNumber = rand() % totalChars + 1;
+	}
+
+	return letters;
 }
 
 //=========================//
