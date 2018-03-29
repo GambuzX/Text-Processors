@@ -258,8 +258,6 @@ bool WordMaster::WasCharUsed(int index, vector<int> usedIndexes) const
 //==============================//
 
 //Ask the user a set of N letters and show all the words present in the dictionary that can be built using the set of the given letters 
-//(Improvement: or any subset of them)
-
 void WordMaster::ShowWordsUsingNLetters()
 {
 	//TODO add Intro
@@ -334,15 +332,18 @@ bool WordMaster::validLettersInput(vector<char> letters) const
 	return true;
 }
 
+//============================================================================================================================================
+// Verifies if the given word only contains letters from the specified list of letters
+
 bool WordMaster::WordOnlyContainsNLetters(string word, vector<char> letters) const
 {
 	for (int i = 0; i < word.length(); i++) //loop for each letter in the word
 	{
 		char currentLetter = word.at(i);
 		bool letterFound = false;
-		for (int j = 0; j < letters.size(); i++) //loop for each char in the vector and compare it against the current letter
+		for (int j = 0; j < letters.size(); j++) //loop for each char in the vector and compare it against the current letter
 		{
-			if (currentLetter == letters.at(i))
+			if (currentLetter == letters.at(j))
 				letterFound = true;
 		}
 		if (!letterFound)
