@@ -425,6 +425,7 @@ void WordMaster::AskToBuildValidWordWithNLetters()
 	{
 		cin >> userWord;
 		StringToUpper(userWord);
+		cout << endl;
 		if (WordContainsAllLetters(userWord, letters) && WordOnlyContainsNLetters(userWord, letters)) //Word is valid if it uses all the given letters and only those
 			validWord = true;
 		else if (!WordOnlyContainsNLetters(userWord, letters))
