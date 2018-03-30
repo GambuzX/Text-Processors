@@ -48,4 +48,5 @@ private:
 	
 	//Wildcard matching
 	void WildcardMatchIntro();
+	bool wildcardMatch(const char *str, const char *strWild);
 };
