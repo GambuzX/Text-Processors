@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <conio.h>
 #include "WordMaster.h"
 
 using namespace std;
@@ -46,18 +47,28 @@ int main()
 			{
 			case 1:
 				wordMaster.CheckWordInWordList();
+				cout << "\nPress any key to continue...";
+				_getch();	
 				break;
 			case 2:
 				wordMaster.GuessRandomScrambledWord();
+				cout << "\nPress any key to continue...";
+				_getch();
 				break;
 			case 3:
 				wordMaster.ShowWordsUsingNLetters();
+				cout << "\nPress any key to continue...";
+				_getch();
 				break;
 			case 4:
 				wordMaster.AskToBuildValidWordWithNLetters();
+				cout << "\nPress any key to continue...";
+				_getch();
 				break;
 			case 5:
 				wordMaster.WildcardMatchingWords();
+				cout << "\nPress any key to continue...";
+				_getch();
 				break;
 			case 9:
 				exitProgram = true;
