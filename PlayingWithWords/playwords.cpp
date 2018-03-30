@@ -53,3 +53,4 @@ void VerifyWordListExists(string filename)
 	return;		
 }
 
+//TODO Check case insensitivity

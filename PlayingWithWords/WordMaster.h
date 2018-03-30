@@ -33,15 +33,18 @@ private:
 	bool WasCharUsed(int, std::vector<int>) const;
 
 	//Words with specified letters
+	void WordsWithNLettersIntro();
 	bool validLettersInput(std::vector<char>) const;
 	void AskForLetters(std::vector<char>&);
 	bool WordOnlyContainsNLetters(std::string, std::vector<char>) const;
 
 	//Word builder
+	void WordBuilderIntro();
 	void BuildCharFrequencyMap();
 	std::map<char, int> BuildCumulativeCharFrequencyMap();
 	std::vector<char> SelectNLettersFromMajorSet(int);
 	bool WordContainsAllLetters(std::string, std::vector<char>);
 	
-
+	//Wildcard matching
+	void WildcardMatchIntro();
 };
