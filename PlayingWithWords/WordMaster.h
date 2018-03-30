@@ -25,6 +25,7 @@ private:
 	void StringToUpper(std::string&);
 
 	//Word Finder
+	void WordFinderIntro();
 	bool isWordInWordList(std::string);
 
 	//Word scrambler methods

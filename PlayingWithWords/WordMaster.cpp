@@ -91,7 +91,7 @@ void WordMaster::ReadAndStoreWordList(std::string filename)
 
 void WordMaster::CheckWordInWordList()
 {
-	//TODO add Intro
+	WordFinderIntro();	
 	string userWord;
 	cout << "Word to search ? ";
 	cin >> userWord;
@@ -102,6 +102,22 @@ void WordMaster::CheckWordInWordList()
 	else
 		cout << "The word " << userWord << " is not in the list.\n";
 }
+
+//============================================================================================================================================
+
+void WordMaster::WordFinderIntro()
+{
+	cout << " __    __              _     ___ _           _           \n";
+	cout << "/ / /\\ \\ \\___  _ __ __| |   / __(_)_ __   __| | ___ _ __ \n";
+	cout << "\\ \\/  \\/ / _ \\| '__/ _` |  / _\\ | | '_ \\ / _` |/ _ \\ '__|\n";
+	cout << " \\  /\\  / (_) | | | (_| | / /   | | | | | (_| |  __/ |   \n";
+	cout << "  \\/  \\/ \\___/|_|  \\__,_| \\/    |_|_| |_|\\__,_|\\___|_|   \n";
+	cout << "_________________________________________________________\n\n";
+	return;
+}
+
+//============================================================================================================================================
+//Verifies if a given word is on the word list or not. Returns a bool
 
 bool WordMaster::isWordInWordList(std::string userWord)
 {
@@ -263,7 +279,7 @@ bool WordMaster::WasCharUsed(int index, vector<int> usedIndexes) const
 //Ask the user a set of N letters and show all the words present in the dictionary that can be built using the set of the given letters 
 void WordMaster::ShowWordsUsingNLetters()
 {
-	//TODO add Intro
+	WordsWithNLettersIntro();
 	vector<char> letters;
 	do
 	{
@@ -282,6 +298,20 @@ void WordMaster::ShowWordsUsingNLetters()
 	}
 	return;
 }
+
+//============================================================================================================================================
+ 
+void WordMaster::WordsWithNLettersIntro()
+{
+	cout << " __    __              _     ___ _           _             ____    ___  \n";
+	cout << "/ / /\\ \\ \\___  _ __ __| |   / __(_)_ __   __| | ___ _ __  |___ \\  / _ \\ \n";
+	cout << "\\ \\/  \\/ / _ \\| '__/ _` |  / _\\ | | '_ \\ / _` |/ _ \\ '__|   __) || | | |\n";
+	cout << " \\  /\\  / (_) | | | (_| | / /   | | | | | (_| |  __/ |     / __/ | |_| |\n";
+	cout << "  \\/  \\/ \\___/|_|  \\__,_| \\/    |_|_| |_|\\__,_|\\___|_|    |_____(_)___/ \n";
+	cout << "________________________________________________________________________\n\n";
+	return;
+}
+
 
 //============================================================================================================================================
 // Asks for the letters to be used and fills the letters vector with it
@@ -364,8 +394,7 @@ bool WordMaster::WordOnlyContainsNLetters(string word, vector<char> letters) con
 
 void WordMaster::AskToBuildValidWordWithNLetters()
 {
-	//TODO add intro
-
+	WordBuilderIntro();
 	//TODO Calculate only once. Verify if it is initialized or not
 	BuildCharFrequencyMap();
 
@@ -413,6 +442,19 @@ void WordMaster::AskToBuildValidWordWithNLetters()
 		cout << "Good job! That word is in the word list!\n";
 	else
 		cout << "That word is not in the word list. Better luck next time...\n";
+}
+
+//============================================================================================================================================
+
+void WordMaster::WordBuilderIntro()
+{
+	cout << " __    __              _     ___       _ _     _           \n";
+	cout << "/ / /\\ \\ \\___  _ __ __| |   / __\\_   _(_) | __| | ___ _ __ \n";
+	cout << "\\ \\/  \\/ / _ \\| '__/ _` |  /__\\// | | | | |/ _` |/ _ \\ '__|\n";
+	cout << " \\  /\\  / (_) | | | (_| | / \\/  \\ |_| | | | (_| |  __/ |   \n";
+	cout << "  \\/  \\/ \\___/|_|  \\__,_| \\_____/\\__,_|_|_|\\__,_|\\___|_|   \n";
+	cout << "___________________________________________________________\n\n";
+	return;
 }
 
 //============================================================================================================================================
@@ -510,6 +552,21 @@ bool WordMaster::WordContainsAllLetters(string userWord, vector<char> letters)
 
 void WordMaster::WildcardMatchingWords()
 {
+	WildcardMatchIntro();
+	
+	
+	return;
 }
 
+//============================================================================================================================================
 
+void WordMaster::WildcardMatchIntro()
+{
+	cout << " __    __ _ _     _                   _   __                     _     \n";
+	cout << "/ / /\\ \\ (_) | __| | ___ __ _ _ __ __| | / _\\ ___  __ _ _ __ ___| |__  \n";
+	cout << "\\ \\/  \\/ / | |/ _` |/ __/ _` | '__/ _` | \\ \\ / _ \\/ _` | '__/ __| '_ \\ \n";
+	cout << " \\  /\\  /| | | (_| | (_| (_| | | | (_| | _\\ \\  __/ (_| | | | (__| | | |\n";
+	cout << "  \\/  \\/ |_|_|\\__,_|\\___\\__,_|_|  \\__,_| \\__/\\___|\\__,_|_|  \\___|_| |_|\n";
+	cout << "_______________________________________________________________________\n\n";
+	return;
+}
