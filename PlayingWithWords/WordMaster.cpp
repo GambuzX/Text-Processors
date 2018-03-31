@@ -36,6 +36,15 @@ int WordMaster::CountTotalWordsInFile(std::string filename) const
 	return total;
 }
 
+//============================================================================================================================================
+//Clears the buffer of unwanted input
+
+void WordMaster::ClearBuffer()
+{
+
+	return;
+}
+
 //==========================================================================================================================================//
 //                                                          INITIALIZE WORD LIST                                                            //
 //==========================================================================================================================================//
@@ -411,6 +420,8 @@ void WordMaster::AskToBuildValidWordWithNLetters()
 		cin >> nLetters;
 	} while (cin.fail());
 	
+	ClearBuffer();
+
 	//Select set of n letters from the major set
 	vector<char> letters = SelectNLettersFromMajorSet(nLetters);
 

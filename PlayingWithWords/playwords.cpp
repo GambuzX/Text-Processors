@@ -9,6 +9,7 @@
 using namespace std;
 
 void PlayingWithWordsIntro();
+void WaitForInput();
 void VerifyWordListExists(string);
 void DisplayMenu();
 
@@ -24,7 +25,6 @@ int main()
 
 	cout << "Opening file ";
 	wordMaster.ReadAndStoreWordList(wordListName);
-	cout << endl;
 
 	bool exitProgram = false;
 	do
@@ -47,28 +47,23 @@ int main()
 			{
 			case 1:
 				wordMaster.CheckWordInWordList();
-				cout << "\nPress any key to continue...";
-				_getch();	
+				WaitForInput();
 				break;
 			case 2:
 				wordMaster.GuessRandomScrambledWord();
-				cout << "\nPress any key to continue...";
-				_getch();
+				WaitForInput();
 				break;
 			case 3:
 				wordMaster.ShowWordsUsingNLetters();
-				cout << "\nPress any key to continue...";
-				_getch();
+				WaitForInput();
 				break;
 			case 4:
 				wordMaster.AskToBuildValidWordWithNLetters();
-				cout << "\nPress any key to continue...";
-				_getch();
+				WaitForInput();
 				break;
 			case 5:
 				wordMaster.WildcardMatchingWords();
-				cout << "\nPress any key to continue...";
-				_getch();
+				WaitForInput();
 				break;
 			case 9:
 				exitProgram = true;
@@ -115,7 +110,6 @@ void VerifyWordListExists(string filename)
 
 void DisplayMenu()
 {
-	cout << endl;
 	cout << " ___________________________ \n";
 	cout << "|   /\\/\\   ___ _ __  _      |\n";
 	cout << "|  /    \\ / _ \\ '_ \\| | | | |\n";
@@ -136,4 +130,14 @@ void DisplayMenu()
 	
 }
 
+//============================================================================================================================================
+
+void WaitForInput()
+{
+	cout << "\nPress any key to continue...";
+	_getch();
+	cout << endl;
+}
+
 //TODO Check case insensitivity
+//TODO Check buffer is cleared whenever needed
