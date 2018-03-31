@@ -568,7 +568,7 @@ void WordMaster::WildcardMatchingWords()
 	string input;
 	cin >> input;
 	
-	cout << "Searching for words ...\n\n";
+	cout << "Searching for matching words ...\n\n";
 	for (int i = 0; i < wordCount; i++)
 	{
 		if (wildcardMatch(wordList.at(i).c_str(), input.c_str()))
