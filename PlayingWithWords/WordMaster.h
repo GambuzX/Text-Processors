@@ -23,7 +23,7 @@ private:
 
 	int CountTotalWordsInFile(std::string file) const;
 	void StringToUpper(std::string&);
-	void ClearBuffer();
+	//void ClearBuffer();
 
 	//Word Finder
 	void WordFinderIntro();
