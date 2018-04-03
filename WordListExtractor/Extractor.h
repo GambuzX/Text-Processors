@@ -22,7 +22,7 @@ private:
 	void VerifyAndAddValidWords(std::string line);
 	bool isValidWord(std::string);
 
-	char currentChar;
+	char currentChar = 'A'; //start with A
 	int NumberOfSimpleWords = 0;
 	int NumberOfNonDuplicateSimpleWords;
 

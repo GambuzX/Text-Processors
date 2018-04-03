@@ -147,7 +147,12 @@ void Extractor::VerifyAndAddValidWords(string line)
 
 	if (line.at(0) != currentChar) //When changing starting letter
 	{
-		if (!(currentChar == 'C' && line.at(0) == 'R')) //There is a line starting with 'R' between the 'C' Words. This prevents unwanted behaviour
+		if (line.at(0) == 'A') //for the first case
+		{
+			currentChar = 'A';
+			cout << endl << currentChar << endl;
+		}
+		else if (line.at(0) == (int) currentChar + 1) //Guarantees that the display only changes letter if it is the next one alphabetically
 		{
 			currentChar = line.at(0);
 			cout << endl << currentChar << endl;
