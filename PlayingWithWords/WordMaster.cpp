@@ -113,15 +113,6 @@ void WordMaster::ReadAndStoreWordList(std::string filename)
 	}
 
 	wordListFile.close();
-
-	srand(time(NULL));
-	cout << "Word count : " << wordCount << endl;
-	for (int i = 0; i < 10; i++)
-	{
-		long long int random = GenerateRandomNumber();
-		cout << "Random number " << i << " : " << random << endl;
-	}
-
 	return;
 }
 
