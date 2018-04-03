@@ -37,7 +37,29 @@ int WordMaster::CountTotalWordsInFile(std::string filename) const
 }
 
 //============================================================================================================================================
-//Clears the buffer of unwanted input
+// Generates a random number until the wordCount
+
+long long int WordMaster::GenerateRandomNumber()
+{
+	//srand(time(NULL));
+	int numberOfIntervals = wordCount / RAND_MAX + 1; //divides the words in intervals of length RAND_MAX
+	int randomInterval = rand() % numberOfIntervals; //random number from 0 up to numberOfIntervals - 1
+
+	bool isNumberValid = false;
+	long long int randomNumber;
+	while (!isNumberValid)
+	{
+		int randomNumberInsideInterval = rand();
+		randomNumber = randomInterval * RAND_MAX + randomNumberInsideInterval;
+		if (randomNumber < wordCount)
+			isNumberValid = true;
+	}
+
+	return randomNumber;
+}
+
+//============================================================================================================================================
+// Clears the buffer of unwanted input
 
 //void WordMaster::ClearBuffer()
 //{
@@ -91,6 +113,15 @@ void WordMaster::ReadAndStoreWordList(std::string filename)
 	}
 
 	wordListFile.close();
+
+	srand(time(NULL));
+	cout << "Word count : " << wordCount << endl;
+	for (int i = 0; i < 10; i++)
+	{
+		long long int random = GenerateRandomNumber();
+		cout << "Random number " << i << " : " << random << endl;
+	}
+
 	return;
 }
 
@@ -170,8 +201,7 @@ bool WordMaster::isWordInWordList(std::string userWord)
 void WordMaster::GuessRandomScrambledWord()
 {
 	const int NUMBER_OF_GUESSES = 3;
-	srand(time(NULL));
-	int randomNumber = rand() % wordCount; //from 0 up to wordCount-1
+	long long int randomNumber = GenerateRandomNumber();
 	string randomWord = wordList.at(randomNumber);
 
 	RandomScrambleIntro();
@@ -204,7 +234,10 @@ void WordMaster::GuessRandomScrambledWord()
 	if (correctGuess)
 		cout << "Good job! You guessed the word!\n";
 	else
+	{
 		cout << "Too bad... None of your guesses were correct.\n";
+		cout << "The answer was " << randomWord << ".\n";
+	}
 	return;
 }
 

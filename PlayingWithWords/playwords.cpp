@@ -73,7 +73,7 @@ int main()
 			}
 		}
 
-	} while (!exitProgram);
+	} while (!exitProgram);	
 
 	return 0;
 }
