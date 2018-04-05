@@ -11,6 +11,7 @@ public:
 	void ProcessDictionary(std::string dictionary);
 	void SortWordList();
 	void MarkDuplicateWordsAsInvalid();
+	void RemoveDuplicateWords();
 	void SaveValidWords(std::string wordListFile);
 	int GetSimpleWords() const;
 	int GetNonDuplicateSimpleWords() const;

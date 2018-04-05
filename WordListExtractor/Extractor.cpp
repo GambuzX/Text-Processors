@@ -57,6 +57,15 @@ void Extractor::MarkDuplicateWordsAsInvalid()
 }
 
 //===================================================================================================================================================================================================
+//Erases duplicate words from the vector
+
+void Extractor::RemoveDuplicateWords()
+{
+	wordList.erase(unique(wordList.begin(), wordList.end()), wordList.end());
+}
+
+
+//===================================================================================================================================================================================================
 //Saves the valid words (different from "x") from the word list vector to a file
 
 void Extractor::SaveValidWords(string wordListFile)
