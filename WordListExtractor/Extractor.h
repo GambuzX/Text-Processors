@@ -30,7 +30,8 @@ private:
 	void VerifyAndAddValidWords(std::string line);
 	bool isValidWord(std::string);
 
-	char currentChar = 'A'; //start with A
+	char currentChar;
+	bool firstIteration = true;
 	int NumberOfSimpleWords = 0;
 	int NumberOfNonDuplicateSimpleWords;
 

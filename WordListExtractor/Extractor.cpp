@@ -176,12 +176,14 @@ void Extractor::VerifyAndAddValidWords(string line)
 	// CODE TO UPDATE THE USER INTERFACE //
 	///////////////////////////////////////
 
+	
 	if (line.at(0) != currentChar) //When changing starting letter
 	{
-		if (line.at(0) == 'A') //for the first case
+		if (firstIteration)
 		{
 			currentChar = 'A';
 			cout << endl << currentChar << endl;
+			firstIteration = false;
 		}
 		else if (line.at(0) == (int) currentChar + 1) //Guarantees that the display only changes letter if it is the next one alphabetically
 		{
