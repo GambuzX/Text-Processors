@@ -57,15 +57,6 @@ void Extractor::MarkDuplicateWordsAsInvalid()
 }
 
 //===================================================================================================================================================================================================
-//Erases duplicate words from the vector
-
-void Extractor::RemoveDuplicateWords()
-{
-	wordList.erase(unique(wordList.begin(), wordList.end()), wordList.end());
-}
-
-
-//===================================================================================================================================================================================================
 //Saves the valid words (different from "x") from the word list vector to a file
 
 void Extractor::SaveValidWords(string wordListFile)
@@ -73,13 +64,39 @@ void Extractor::SaveValidWords(string wordListFile)
 	ofstream OutputFile(wordListFile);
 
 	unsigned length = wordList.size();
-	for (int i = 0; i < length; i ++)
+	for (int i = 0; i < length; i++)
 	{
 		if (wordList.at(i) != "x") //duplicate elements were changed to "x"
 		{
 			OutputFile << wordList.at(i); //add all the extracted headlines to a file
 			if (i < length - 1) OutputFile << '\n'; //add newlines (except on the last word)
 		}
+	}
+
+	OutputFile.close();
+	return;
+}
+
+//===================================================================================================================================================================================================
+//Erases duplicate words from the vector
+
+void Extractor::RemoveDuplicateWords()
+{
+	wordList.erase(unique(wordList.begin(), wordList.end()), wordList.end());
+}
+
+//===================================================================================================================================================================================================
+// Saves all the words from the wordList vector to a file
+
+void Extractor::SaveWords(string wordListFile)
+{
+	ofstream OutputFile(wordListFile);
+
+	unsigned length = wordList.size();
+	for (int i = 0; i < length; i++)
+	{
+		OutputFile << wordList.at(i); //add all the extracted headlines to a file
+		if (i < length - 1) OutputFile << '\n'; //add newlines (except on the last word)
 	}
 
 	OutputFile.close();
@@ -95,6 +112,11 @@ int Extractor::GetSimpleWords() const {	return NumberOfSimpleWords;}
 //Getter for the number of non duplicate simple words
 
 int Extractor::GetNonDuplicateSimpleWords() const {	return NumberOfNonDuplicateSimpleWords;}
+
+//===================================================================================================================================================================================================
+//Getter for the current size of the WordList
+
+int Extractor::GetWordListLength() const { return wordList.size(); }
 
 //===================================================================================================================================================================================================
 //Given a line, searches for valid headlines and adds them to the wordList

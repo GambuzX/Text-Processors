@@ -31,18 +31,18 @@ int main()
 	extractor.ProcessDictionary(dictionary);
 
 	cout << endl;
-	cout << "Number of simple words = " << extractor.GetSimpleWords() << endl << endl;
+	cout << "Number of simple words = " << extractor.GetWordListLength() << endl << endl;
 
 	cout << "Sorting words ...\n\n";
 	extractor.SortWordList();
 
 	cout << "Removing duplicate words ... \n\n";
-	extractor.MarkDuplicateWordsAsInvalid();
+	extractor.RemoveDuplicateWords();
 
-	cout << "Number of non-duplicate simple words = " << extractor.GetNonDuplicateSimpleWords() << endl << endl;
+	cout << "Number of non-duplicate simple words = " << extractor.GetWordListLength() << endl << endl;
 
 	cout << "Saving words into file " << wordListFile << " ... \n\n";
-	extractor.SaveValidWords(wordListFile);
+	extractor.SaveWords(wordListFile);
 
 	cout << "End of processing.\n";
 	return 0;

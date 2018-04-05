@@ -10,11 +10,18 @@ class Extractor
 public:
 	void ProcessDictionary(std::string dictionary);
 	void SortWordList();
+
+	// Changing duplicate words to "x" - 1st approach
 	void MarkDuplicateWordsAsInvalid();
-	void RemoveDuplicateWords();
 	void SaveValidWords(std::string wordListFile);
+
+	// Removing duplicate words from vector - 2nd approach
+	void RemoveDuplicateWords();
+	void SaveWords(std::string wordListFile);
+
 	int GetSimpleWords() const;
 	int GetNonDuplicateSimpleWords() const;
+	int GetWordListLength() const;
 	
 private:
 
