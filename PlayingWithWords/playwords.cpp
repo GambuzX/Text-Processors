@@ -134,9 +134,11 @@ void DisplayMenu()
 
 void WaitForInput()
 {
-	cout << "\nPress any key to continue...";
-	_getch();
+	cout << "\nPress any key to continue... CTRL + Z to exit";
+	char input = _getch();
 	cout << endl;
+	if ((int)input == 26)
+		exit(0);
 }
 
 //TODO Check case insensitivity
