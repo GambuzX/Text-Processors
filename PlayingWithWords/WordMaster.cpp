@@ -468,7 +468,7 @@ void WordMaster::AskToBuildValidWordWithNLetters()
 			cout << "No cheating! Enter a word using all the letters (including repeating ones).\n\n";
 	} while (!validWord);
 
-	//TODO Given repetitive letters, check if that letter is used multiple times
+	//TODO Given repetitive letters, check if that letter is used multiple times -> use a map
 
 	//Check if word is in dictionary
 	if (isWordInWordList(userWord))
