@@ -428,8 +428,9 @@ bool WordMaster::WordOnlyContainsNLetters(string word, vector<char> letters) con
 void WordMaster::AskToBuildValidWordWithNLetters()
 {
 	WordBuilderIntro();
-	//TODO Calculate only once. Verify if it is initialized or not
-	BuildCharFrequencyMap();
+
+	if (charFrequency.empty())
+		BuildCharFrequencyMap();
 
 	//Ask for the number of letters
 	int nLetters;
