@@ -41,7 +41,6 @@ int WordMaster::CountTotalWordsInFile(std::string filename) const
 
 long long int WordMaster::GenerateRandomNumber()
 {
-	//srand(time(NULL));
 	int numberOfIntervals = wordCount / RAND_MAX + 1; //divides the words in intervals of length RAND_MAX
 	int randomInterval = rand() % numberOfIntervals; //random number from 0 up to numberOfIntervals - 1
 
@@ -253,7 +252,6 @@ string WordMaster::ScrambleLetters(string originalWord)
 	string scrambledWord = originalWord;
 	vector<char> availableChars;
 	vector<int> usedIndexes;
-	srand(time(NULL));
 
 	//Fills the chars vector
 	for (unsigned i = 0; i < length; i++)
@@ -544,7 +542,6 @@ vector<char> WordMaster::SelectNLettersFromMajorSet(int nLetters)
 		scaleReducedCumulativeMap[letter] = (double) cumulativeMap[letter] / SCALE_FACTOR;
 	}
 
-	srand(time(NULL));
 	for (int i = 1; i <= nLetters; i++)
 	{
 		int randomNumber = rand() % ((int)scaleReducedCumulativeMap['Z']); //random number modulus the total number of chars

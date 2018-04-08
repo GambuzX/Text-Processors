@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include <conio.h>
+#include <time.h>
 #include "WordMaster.h"
 
 using namespace std;
@@ -26,6 +27,7 @@ int main()
 	cout << "Opening file ";
 	wordMaster.ReadAndStoreWordList(wordListName);
 
+	srand(time(NULL));
 	bool exitProgram = false;
 	do
 	{
