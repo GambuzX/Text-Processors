@@ -474,9 +474,9 @@ void WordMaster::AskToBuildValidWordWithNLetters()
 
 	//Check if word is in dictionary
 	if (isWordInWordList(userWord))
-		cout << "Good job! That word is in the word list!\n";
+		cout << "Good job! " << userWord << " is in the word list!\n";
 	else
-		cout << "That word is not in the word list. Better luck next time...\n";
+		cout << userWord << " is not in the word list. Better luck next time...\n";
 }
 
 //============================================================================================================================================
