@@ -73,6 +73,7 @@ int main()
 			default:
 				cout << "Please enter a valid option.\n\n";
 			}
+			//cout << string(50, '\n'); // Clears the screen
 		}
 
 	} while (!exitProgram);	
