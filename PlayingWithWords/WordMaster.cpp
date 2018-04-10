@@ -458,14 +458,10 @@ void WordMaster::AskToBuildValidWordWithNLetters()
 		cin >> userWord;
 		StringToUpper(userWord);
 		cout << endl;
-		if (WordContainsAllLetters(userWord, letters) && WordOnlyContainsNLetters(userWord, letters)) //Word is valid if it uses all the given letters and only those
+		if (WordContainsAllLetters(userWord, letters) && WordOnlyContainsNLetters(userWord, letters) && LettersOcurrencesMatch(userWord,letters)) //Word is valid if it uses all the given letters and only those
 			validWord = true;
-		else if (!WordOnlyContainsNLetters(userWord, letters))
-			cout << "No cheating! Enter a word using only the given letters.\n\n";
-		else if (!WordContainsAllLetters(userWord, letters))
-			cout << "No cheating! Enter a word using all of the given letters.\n\n";
-		else if (userWord.length() < letters.size())
-			cout << "No cheating! Enter a word using all the letters (including repeating ones).\n\n";
+		else
+			cout << "No cheating! Enter a word using only and all of the given letters.\n\n";
 	} while (!validWord);
 
 	//TODO Given repetitive letters, check if that letter is used multiple times -> use a map
@@ -573,6 +569,24 @@ bool WordMaster::WordContainsAllLetters(string userWord, vector<char> letters)
 		if (!hasLetter)
 			return false;
 	}
+	return true;
+}
+
+bool WordMaster::LettersOcurrencesMatch(string userWord, vector<char> letters)
+{
+	map<char, int> letterOcurrencesInWord, givenLettersMap;
+
+	for (int i = 0; i < userWord.length(); i++)
+		letterOcurrencesInWord[userWord.at(i)] ++;
+
+	for (int i = 0; i < letters.size(); i++)
+		givenLettersMap[letters.at(i)] ++;
+
+	if (letterOcurrencesInWord.size() != givenLettersMap.size()) return false;
+
+	for (int i = 0; i < letters.size(); i++)
+		if (letterOcurrencesInWord[letters.at(i)] != givenLettersMap[letters.at(i)]) return false;
+
 	return true;
 }
 
