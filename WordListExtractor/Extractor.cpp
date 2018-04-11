@@ -18,7 +18,7 @@ void Extractor::ProcessDictionary(string dictionary)
 
 	while (getline(dict, line))
 	{
-		if (line.length() > 0 && (int) line.at(0) >= 0  && (int) line.at(0) <= 255 && isupper(line.at(0))) // filtering obviously uninteresting lines
+		if (line.length() > 0 && (int) line.at(0) >= 0  && (int) line.at(0) <= 255 && !islower(line.at(0))) // filtering obviously uninteresting lines
 		{
 			VerifyAndAddValidWords(line);
 		}
