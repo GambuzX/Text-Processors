@@ -165,6 +165,7 @@ void Extractor::VerifyAndAddValidWords(string line)
 			{
 				string substring = lineCopy.substr(0, ColonPosition); //stores a substring containing the word until the colon
 				lineCopy.erase(0, ColonPosition + 2); //erases the word, colon and space
+				if (substring.find(' ') != string::npos) RemoveEndSpaces(substring); //removes extra spaces in the end
 				if (!isValidWord(substring)) continue; //If not a valid word, continue to the next word
 				wordList.push_back(substring);
 				NumberOfSimpleWords++;
@@ -213,4 +214,19 @@ bool Extractor::isValidWord(std::string word)
 	}
 
 	return true; //if none of the above tests fail, it's a valid word
+}
+
+void Extractor::RemoveEndSpaces(string &word)
+{
+	int endIndex = 0;
+	for (size_t i = word.length() - 1; i >= 0; i--)
+	{
+		if (word.at(i) != ' ')
+		{
+			endIndex = i;
+			break;
+		}
+	}
+	word = word.substr(0, endIndex+1);
+	return;
 }

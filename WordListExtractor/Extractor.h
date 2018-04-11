@@ -29,6 +29,7 @@ private:
 
 	void VerifyAndAddValidWords(std::string line);
 	bool isValidWord(std::string);
+	void RemoveEndSpaces(std::string &word);
 
 	char currentChar;
 	bool firstIteration = true;
