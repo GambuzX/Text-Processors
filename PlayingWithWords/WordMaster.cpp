@@ -427,6 +427,27 @@ void WordMaster::AskToBuildValidWordWithRandomLetters()
 {
 	WordBuilderIntro();
 
+	if (charFrequency.empty())
+		BuildCharFrequencyMap();
+
+	double lowestPercentage = 1; //percentage of the least frequent letter
+	for (char letter = 'A'; letter <= 'Z'; letter++)
+	{
+		double letterProbability = charFrequency[letter] / wordCount;
+		if (lowestPercentage > letterProbability)
+			lowestPercentage = letterProbability;
+	}
+
+	vector<char> largerPool;
+	for (char letter = 'A'; letter <= 'Z'; letter ++)
+	{
+		double letterProbability = charFrequency[letter] / wordCount;
+		int ocurrencesInLargePool = round(letterProbability * 2 / lowestPercentage); //calculates number of ocurrences of each letter, based on the assumption that the lowest must appear twice
+		for (int i = 1; i <= ocurrencesInLargePool; i++)
+			largerPool.push_back(letter);
+	}
+
+
 }
 
 //============================================================================================================================================
