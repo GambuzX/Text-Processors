@@ -52,18 +52,22 @@ int main()
 				WaitForInput();
 				break;
 			case 2:
-				wordMaster.GuessRandomScrambledWord();
-				WaitForInput();
-				break;
-			case 3:
 				wordMaster.ShowWordsUsingNLetters();
 				WaitForInput();
 				break;
+			case 3:
+				wordMaster.GuessRandomScrambledWord();
+				WaitForInput();
+				break;
 			case 4:
-				wordMaster.AskToBuildValidWordWithNLetters();
+				wordMaster.WordBuilder();
 				WaitForInput();
 				break;
 			case 5:
+				wordMaster.WordBuilderV2();
+				WaitForInput();
+				break;
+			case 6:
 				wordMaster.WildcardMatchingWords();
 				WaitForInput();
 				break;
@@ -122,10 +126,11 @@ void DisplayMenu()
 	cout << "|                           |\n";
 	cout << "| Select:                   |\n";
 	cout << "| 1- Word Finder            |\n";
-	cout << "| 2- Random Scramble        |\n";
-	cout << "| 3- Word Finder 2.0        |\n";
+	cout << "| 2- Word Finder V2.0       |\n";
+	cout << "| 3- Random Scramble        |\n";
 	cout << "| 4- Word Builder           |\n";
-	cout << "| 5- Wildcard Search        |\n";
+	cout << "| 5- Word Builder V2.0      |\n";
+	cout << "| 6- Wildcard Search        |\n";
 	cout << "|                           |\n";
 	cout << "| 9- Exit                   |\n";
 	cout << "|___________________________|\n";

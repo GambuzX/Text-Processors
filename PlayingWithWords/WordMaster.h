@@ -11,8 +11,8 @@ public:
 	void CheckWordInWordList();
 	void GuessRandomScrambledWord();
 	void ShowWordsUsingNLetters();
-	void AskToBuildValidWordWithRandomLetters();
-	void AskToBuildValidWordWithNLetters();
+	void WordBuilder();
+	void WordBuilderV2();
 	void WildcardMatchingWords();
 
 private:
@@ -44,7 +44,7 @@ private:
 
 	//Word builder
 	void WordBuilderIntro();
-
+	bool WordOnlyContainsGivenLetters(std::string, std::vector<char>);
 
 	//Word builder 2.0
 	void WordBuilderIntroV2();

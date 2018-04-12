@@ -423,7 +423,7 @@ bool WordMaster::WordOnlyContainsNLetters(string word, vector<char> letters) con
 //Randomly choose a set of N letters and ask the user to build a valid word, then verify if the word belongs to the word list or not.
 //The set of letters must be chosen by a larger set, built according to the number of each letter in the word list
 
-void WordMaster::AskToBuildValidWordWithRandomLetters()
+void WordMaster::WordBuilder()
 {
 	WordBuilderIntro();
 
@@ -433,7 +433,7 @@ void WordMaster::AskToBuildValidWordWithRandomLetters()
 	double lowestPercentage = 1; //percentage of the least frequent letter
 	for (char letter = 'A'; letter <= 'Z'; letter++)
 	{
-		double letterProbability = charFrequency[letter] / wordCount;
+		double letterProbability = (double) charFrequency[letter] / wordCount;
 		if (lowestPercentage > letterProbability)
 			lowestPercentage = letterProbability;
 	}
@@ -441,13 +441,54 @@ void WordMaster::AskToBuildValidWordWithRandomLetters()
 	vector<char> largerPool;
 	for (char letter = 'A'; letter <= 'Z'; letter ++)
 	{
-		double letterProbability = charFrequency[letter] / wordCount;
+		double letterProbability = (double) charFrequency[letter] / wordCount;
 		int ocurrencesInLargePool = round(letterProbability * 2 / lowestPercentage); //calculates number of ocurrences of each letter, based on the assumption that the lowest must appear twice
 		for (int i = 1; i <= ocurrencesInLargePool; i++)
 			largerPool.push_back(letter);
 	}
 
+	//Ask for the number of letters
+	int nLetters;
+	do
+	{
+		if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(1000, '\n');
+		}
+		cout << "Number of letters? ";
+		cin >> nLetters;
+	} while (cin.fail());
 
+	vector<char> selectedLetters;
+	cout << "Can you build a word with these letters? \n";
+	for (int i = 1; i <= nLetters; i++)
+	{
+		int random = rand() % largerPool.size()-1; //random number for the index of the selected letter
+		cout << largerPool.at(random) << " ";
+		selectedLetters.push_back(largerPool.at(random)); //pushes selected letter to the vector
+		largerPool.erase(largerPool.begin() + random); //removes selected letter from pool
+	}
+	cout << endl << endl;
+
+	bool validWord = false;
+	string guess;
+	do
+	{
+		cin >> guess;
+		StringToUpper(guess);
+		if (WordOnlyContainsGivenLetters(guess, selectedLetters))
+			validWord = true;
+		else
+			cout << "Please use only the given letters!\n\n";
+
+	} while (!validWord);
+
+	//Check if word is in dictionary
+	if (isWordInWordList(guess))
+		cout << "Good job! " << guess << " is in the word list!\n";
+	else
+		cout << guess << " is not in the word list. Better luck next time...\n";	
 }
 
 //============================================================================================================================================
@@ -463,6 +504,22 @@ void WordMaster::WordBuilderIntro()
 	return;
 }
 
+//============================================================================================================================================
+
+bool WordMaster::WordOnlyContainsGivenLetters(string guess, vector<char> givenLetters)
+{
+	for (int i = 0; i < guess.length(); i++)
+	{
+		char letter = guess.at(i);
+		bool foundLetter = false;
+		for (int j = 0; j < givenLetters.size(); j++)
+			if (letter == givenLetters.at(j))
+				foundLetter = true;
+		if (!foundLetter) return false;
+	}
+	return true;
+}
+
 //==========================================================================================================================================//
 //                                                                WORD BUILDER 2.0                                                          //
 //==========================================================================================================================================//
@@ -470,7 +527,7 @@ void WordMaster::WordBuilderIntro()
 //Randomly choose a set of N letters (N is choosen by the user) and ask the user to build a valid word, then verify if the word belongs to the word list or not.
 //The set of letters must be chosen by a larger set, built according to the number of each letter in the word list
 
-void WordMaster::AskToBuildValidWordWithNLetters()
+void WordMaster::WordBuilderV2()
 {
 	WordBuilderIntroV2();
 
@@ -510,8 +567,6 @@ void WordMaster::AskToBuildValidWordWithNLetters()
 		else
 			cout << "No cheating! Enter a word using only and all of the given letters.\n\n";
 	} while (!validWord);
-
-	//TODO Given repetitive letters, check if that letter is used multiple times -> use a map
 
 	//Check if word is in dictionary
 	if (isWordInWordList(userWord))
