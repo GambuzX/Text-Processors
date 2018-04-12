@@ -524,8 +524,7 @@ bool WordMaster::WordOnlyContainsGivenLetters(string guess, vector<char> givenLe
 //                                                                WORD BUILDER 2.0                                                          //
 //==========================================================================================================================================//
 
-//Randomly choose a set of N letters (N is choosen by the user) and ask the user to build a valid word, then verify if the word belongs to the word list or not.
-//The set of letters must be chosen by a larger set, built according to the number of each letter in the word list
+// Similar to Word Builder, but all letters must be used and only those. Also, the larger pool is the total number of letters in all words, not a specific set.
 
 void WordMaster::WordBuilderV2()
 {
