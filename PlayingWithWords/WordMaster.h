@@ -11,6 +11,7 @@ public:
 	void CheckWordInWordList();
 	void GuessRandomScrambledWord();
 	void ShowWordsUsingNLetters();
+	void AskToBuildValidWordWithRandomLetters();
 	void AskToBuildValidWordWithNLetters();
 	void WildcardMatchingWords();
 
@@ -43,6 +44,10 @@ private:
 
 	//Word builder
 	void WordBuilderIntro();
+
+
+	//Word builder 2.0
+	void WordBuilderIntroV2();
 	void BuildCharFrequencyMap();
 	std::map<char, int> BuildCumulativeCharFrequencyMap();
 	std::vector<char> SelectNLettersFromMajorSet(int);

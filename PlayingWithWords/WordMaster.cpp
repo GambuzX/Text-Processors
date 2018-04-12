@@ -423,9 +423,35 @@ bool WordMaster::WordOnlyContainsNLetters(string word, vector<char> letters) con
 //Randomly choose a set of N letters and ask the user to build a valid word, then verify if the word belongs to the word list or not.
 //The set of letters must be chosen by a larger set, built according to the number of each letter in the word list
 
-void WordMaster::AskToBuildValidWordWithNLetters()
+void WordMaster::AskToBuildValidWordWithRandomLetters()
 {
 	WordBuilderIntro();
+
+}
+
+//============================================================================================================================================
+
+void WordMaster::WordBuilderIntro()
+{
+	cout << " __    __              _     ___       _ _     _           \n";
+	cout << "/ / /\\ \\ \\___  _ __ __| |   / __\\_   _(_) | __| | ___ _ __ \n";
+	cout << "\\ \\/  \\/ / _ \\| '__/ _` |  /__\\// | | | | |/ _` |/ _ \\ '__|\n";
+	cout << " \\  /\\  / (_) | | | (_| | / \\/  \\ |_| | | | (_| |  __/ |   \n";
+	cout << "  \\/  \\/ \\___/|_|  \\__,_| \\_____/\\__,_|_|_|\\__,_|\\___|_|   \n";
+	cout << "___________________________________________________________\n\n";
+	return;
+}
+
+//==========================================================================================================================================//
+//                                                                WORD BUILDER 2.0                                                          //
+//==========================================================================================================================================//
+
+//Randomly choose a set of N letters (N is choosen by the user) and ask the user to build a valid word, then verify if the word belongs to the word list or not.
+//The set of letters must be chosen by a larger set, built according to the number of each letter in the word list
+
+void WordMaster::AskToBuildValidWordWithNLetters()
+{
+	WordBuilderIntroV2();
 
 	if (charFrequency.empty())
 		BuildCharFrequencyMap();
@@ -475,14 +501,14 @@ void WordMaster::AskToBuildValidWordWithNLetters()
 
 //============================================================================================================================================
 
-void WordMaster::WordBuilderIntro()
+void WordMaster::WordBuilderIntroV2()
 {
-	cout << " __    __              _     ___       _ _     _           \n";
-	cout << "/ / /\\ \\ \\___  _ __ __| |   / __\\_   _(_) | __| | ___ _ __ \n";
-	cout << "\\ \\/  \\/ / _ \\| '__/ _` |  /__\\// | | | | |/ _` |/ _ \\ '__|\n";
-	cout << " \\  /\\  / (_) | | | (_| | / \\/  \\ |_| | | | (_| |  __/ |   \n";
-	cout << "  \\/  \\/ \\___/|_|  \\__,_| \\_____/\\__,_|_|_|\\__,_|\\___|_|   \n";
-	cout << "___________________________________________________________\n\n";
+	cout << " __    __              _     ___       _ _     _                   ____    ___  \n";
+	cout << "/ / /\\ \\ \\___  _ __ __| |   / __\\_   _(_) | __| | ___ _ __  /\\   /\\___ \\  / _ \\ \n";
+	cout << "\\ \\/  \\/ / _ \\| '__/ _` |  /__\\// | | | | |/ _` |/ _ \\ '__| \\ \\ / / __) || | | |\n";
+	cout << " \\  /\\  / (_) | | | (_| | / \\/  \\ |_| | | | (_| |  __/ |     \\ V / / __/ | |_| |\n";
+	cout << "  \\/  \\/ \\___/|_|  \\__,_| \\_____/\\__,_|_|_|\\__,_|\\___|_|      \\_/ |_____(_)___/ \n";
+	cout << "________________________________________________________________________________\n\n";
 	return;
 }
 
