@@ -21,3 +21,6 @@ The development of the programs is made in a modular way, so that some of the fu
 ### Curricular Unit Info
 * **Date:** 1st Year, 2nd Semester, 2017/2018
 * **Course:** [Programação | Programming](https://sigarra.up.pt/feup/pt/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=399883 "PROG") (PROG)
+
+### Disclaimer
+This repository was used for educational purposes and I do not take any responsibility for anything related to its content. You are free to use any code or algorithm you find, but do so at your own risk.
